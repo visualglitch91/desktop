@@ -1,26 +1,10 @@
 import { h } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import usePooling from "./usePooling";
 import ProgressBar from "./ProgressBar";
 import "./Torrent.css";
 
 function Torrent() {
-  const [torrents, setTorrents] = useState();
-
-  function refreshTorrents() {
-    fetch("/qbittorrent/torrents")
-      .then((res) => res.json())
-      .then(setTorrents);
-  }
-
-  useEffect(() => {
-    refreshTorrents();
-
-    const interval = setInterval(refreshTorrents, 15000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  const [torrents] = usePooling("/qbittorrent/torrents", 15 * 1000);
 
   if (!torrents) {
     return;

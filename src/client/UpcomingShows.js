@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import usePooling from "./usePooling";
 import "./UpcomingShows.css";
 
 function formatDate(dateString) {
@@ -13,23 +13,7 @@ function formatDate(dateString) {
 }
 
 function UpcomingShows() {
-  const [episodes, setEpisodes] = useState();
-
-  function refreshEpisodes() {
-    fetch("/trakt/upcoming-shows")
-      .then((res) => res.json())
-      .then(setEpisodes);
-  }
-
-  useEffect(() => {
-    refreshEpisodes();
-
-    const interval = setInterval(refreshEpisodes, 24 * 60 * 60 * 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  const [episodes] = usePooling("/trakt/upcoming-shows", 24 * 60 * 60 * 1000);
 
   if (!episodes) {
     return null;

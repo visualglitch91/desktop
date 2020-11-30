@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import usePooling from "./usePooling";
 import ProgressBar from "./ProgressBar";
 import "./Stats.css";
 
@@ -12,23 +12,7 @@ function Stat({ label, value }) {
 }
 
 function Stats() {
-  const [stats, setStats] = useState();
-
-  function refreshStats() {
-    fetch("/system-stats")
-      .then((res) => res.json())
-      .then(setStats);
-  }
-
-  useEffect(() => {
-    refreshStats();
-
-    const interval = setInterval(refreshStats, 5000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  const [stats] = usePooling("/system-stats", 5 * 1000);
 
   if (!stats) {
     return;

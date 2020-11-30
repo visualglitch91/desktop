@@ -1,5 +1,6 @@
 import { h, Fragment } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import { useEffect } from "preact/hooks";
+import usePooling from "./usePooling";
 import Widget from "./Widget";
 import LightsAndSwitches from "./LightsAndSwitches";
 import ReloadButton from "./ReloadButton";
@@ -13,31 +14,18 @@ import HRLocker from "./HRLocker";
 import UpcomingShows from "./UpcomingShows";
 import Torrent from "./Torrent";
 
-function App() {
-  const [hass, setHass] = useState();
+function parseHassState(json) {
+  return json.reduce(
+    (acc, entity) => ({ ...acc, [entity.entity_id]: entity }),
+    {}
+  );
+}
 
-  function refreshStates() {
-    fetch("home-assistant/states")
-      .then((res) => res.json())
-      .then((json) =>
-        json.reduce(
-          (acc, entity) => ({ ...acc, [entity.entity_id]: entity }),
-          {}
-        )
-      )
-      .then(setHass);
-  }
+function App() {
+  const [hass] = usePooling("/home-assistant/states", 5000, parseHassState);
 
   useEffect(() => {
     document.body.style.opacity = 1;
-
-    refreshStates();
-
-    const interval = setInterval(refreshStates, 5000);
-
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
 
   return (

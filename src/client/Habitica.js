@@ -1,25 +1,14 @@
 import { h } from "preact";
-import { useEffect, useState, useMemo } from "preact/hooks";
+import { useMemo } from "preact/hooks";
+import usePooling from "./usePooling";
 import Checkbox from "./Checkbox";
 import Icon from "./Icon";
 import ProgressBar from "./ProgressBar";
 import "./Habitica.css";
 
 function Habitica() {
-  const [stats, setStats] = useState();
-  const [data, setData] = useState();
-
-  function refreshStats() {
-    fetch("/habitica/stats")
-      .then((res) => res.json())
-      .then(setStats);
-  }
-
-  function refreshData() {
-    fetch("/habitica/tasks")
-      .then((res) => res.json())
-      .then(setData);
-  }
+  const [stats, refreshStats] = usePooling("/habitica/stats", 60 * 1000);
+  const [data, , setData] = usePooling("/habitica/tasks", 60 * 1000);
 
   function score(task, direction) {
     return fetch(`/habitica/tasks/${task.id}/score/${direction}`, {
@@ -42,19 +31,6 @@ function Habitica() {
       });
     });
   }
-
-  useEffect(() => {
-    refreshData();
-    refreshStats();
-
-    const interval1 = setInterval(refreshData, 60000);
-    const interval2 = setInterval(refreshStats, 60000);
-
-    return () => {
-      clearInterval(interval1);
-      clearInterval(interval2);
-    };
-  }, []);
 
   const tasks = useMemo(
     () =>

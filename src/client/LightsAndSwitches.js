@@ -9,17 +9,15 @@ function LightsAndSwitches({ hass }) {
   const [states, setStates] = useState();
 
   function toggle(entity) {
-    fetch(`home-assistant/${entity.type}/${entity.entityId}/toggle`).then(
-      () => {
-        setStates((states) => ({
-          ...states,
-          [entity.entityId]: {
-            ...states[entity.entityId],
-            state: states[entity.entityId] === "on" ? "off" : "on",
-          },
-        }));
-      }
-    );
+    setStates((states) => ({
+      ...states,
+      [entity.entityId]: {
+        ...states[entity.entityId],
+        state: states[entity.entityId] === "on" ? "off" : "on",
+      },
+    }));
+
+    fetch(`home-assistant/${entity.type}/${entity.entityId}/toggle`);
   }
 
   useEffect(() => {
