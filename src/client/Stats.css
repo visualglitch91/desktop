@@ -1,0 +1,9 @@
+.Stats {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.Stats li {
+  margin-bottom: 8px;
+}

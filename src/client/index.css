@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Moving Skate";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Moving Skate"), url("MovingSkate.woff") format("woff");
+}
+
+body {
+  font-family: "Open Sans";
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+}

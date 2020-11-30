@@ -1,0 +1,23 @@
+.LightsAndSwitches {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: #ffffff;
+}
+
+.LightsAndSwitches li {
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.LightsAndSwitches li:hover {
+  opacity: 1;
+}
+
+.LightsAndSwitches__Toggle {
+  font-size: 24px;
+  margin-right: 4px;
+  margin-bottom: -1px;
+}

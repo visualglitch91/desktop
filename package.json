@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "clean": "rimraf dist .cache",
+    "start": "node dist/index.js",
+    "build": "npm run clean && npm run build:server && npm run build:client",
+    "build:client": "parcel build src/index.html -d dist/client",
+    "build:server": "parcel build src/server/index.js --target node --bundle-node-modules",
+    "dev": "npm run clean && run-p \"dev:*\"",
+    "dev:client": "parcel watch src/index.html --no-hmr -d dist/client",
+    "dev:server": "run-p \"dev:server:*\"",
+    "dev:server:parcel": "parcel watch src/server/index.js --target node --bundle-node-modules",
+    "dev:server:nodemon": "nodemon dist/index"
+  },
+  "devDependencies": {
+    "eslint": "^7.14.0",
+    "eslint-config-preact": "^1.1.3",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.4",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "@mdi/font": "^5.8.55",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "preact": "^10.5.7"
+  },
+  "eslintConfig": {
+    "extends": "preact"
+  }
+}

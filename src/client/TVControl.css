@@ -1,0 +1,28 @@
+.TVControl {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  color: #ffffff;
+}
+
+.TVControl__Row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.TVControl__Row:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.TVControl__Label {
+  opacity: 0.6;
+}
+
+.TVControl .mdi {
+  opacity: 0.5;
+  font-size: 20px;
+}
+
+.TVControl .mdi:hover {
+  opacity: 1;
+}

@@ -1,0 +1,7 @@
+node_modules
+dist
+.cache
+src\server\secrets.json
+src\client\LightsAndSwitches__entities.json
+src/server/secrets.json
+src/client/LightsAndSwitches__entities.json

@@ -1,0 +1,31 @@
+.FancyClock {
+  position: relative;
+  left: -50%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.FancyClock__Time {
+  font-size: 180px;
+  font-weight: bolder;
+  letter-spacing: -12px;
+  opacity: 0.4;
+}
+
+.FancyClock__Weekday {
+  font-family: "Moving Skate";
+  position: absolute;
+  top: 61px;
+  width: 100%;
+  text-align: center;
+  font-size: 130px;
+  color: #1e2156;
+  transform: rotate(-15deg);
+  transform-origin: center center;
+}
+
+.FancyClock__Date {
+  font-size: 22px;
+  margin-top: -38px;
+  opacity: 0.4;
+}

@@ -1,0 +1,40 @@
+.Spotify {
+  display: flex;
+  color: #ffffff;
+  font-family: monospace;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Spotify__AlbumPic {
+  width: 48px;
+  height: 48px;
+  margin-left: 8px;
+}
+
+.Spotify__Details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  opacity: 0.6;
+  overflow: hidden;
+  align-items: flex-end;
+}
+
+.Spotify__Title {
+  font-size: 14px;
+  margin-bottom: 4px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Spotify__Artist {
+  font-size: 11px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
