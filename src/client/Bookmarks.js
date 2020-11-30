@@ -113,19 +113,25 @@ const links = [
 
 function Bookmarks() {
   function open(url) {
-    fetch("/chrome-launcher", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
+    if (window.isDesktop) {
+      fetch("/chrome-launcher", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+    } else {
+      window.location.href = url;
+    }
   }
 
   return (
     <ul className="Bookmarks">
       {links.map((link, index) => (
         <li key={index} onClick={() => open(link.url)}>
-          {link.name}
-          <img src={link.icon} />
+          <div>
+            {link.name}
+            <img src={link.icon} />
+          </div>
         </li>
       ))}
     </ul>

@@ -27,6 +27,8 @@ function App() {
   }
 
   useEffect(() => {
+    document.body.style.opacity = 1;
+
     refreshStates();
 
     const interval = setInterval(refreshStates, 5000);

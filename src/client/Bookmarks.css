@@ -9,14 +9,23 @@
 .Bookmarks li {
   margin-bottom: 8px;
   opacity: 0.6;
+  cursor: pointer;
+}
+
+.Bookmarks li > div {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  cursor: pointer;
+  transform: translateX(0) translateZ(0px);
+  transition: transform 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
 .Bookmarks li:hover {
   opacity: 1;
+}
+
+.Bookmarks li:hover > div {
+  transform: translateX(-10px) translateZ(0px);
 }
 
 .Bookmarks li img {
