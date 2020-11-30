@@ -7,6 +7,7 @@ import habitica from "./habitica";
 import chromeLauncher from "./chrome-launcher";
 import lazySeal12 from "./lazy-seal-12";
 import trakt from "./trakt";
+import qbittorrent from "./qbittorrent";
 
 const PORT = process.env.PORT || 4123;
 const app = express();
@@ -20,5 +21,6 @@ habitica(app);
 chromeLauncher(app);
 lazySeal12(app);
 trakt(app);
+qbittorrent(app);
 
 app.listen(PORT, () => console.log("listening on port", PORT));

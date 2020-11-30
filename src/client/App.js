@@ -11,6 +11,7 @@ import Habitica from "./Habitica";
 import Bookmarks from "./Bookmarks";
 import HRLocker from "./HRLocker";
 import UpcomingShows from "./UpcomingShows";
+import Torrent from "./Torrent";
 
 function App() {
   const [hass, setHass] = useState();
@@ -75,6 +76,9 @@ function App() {
       </Widget>
       <Widget right={120} bottom={40}>
         <HRLocker />
+      </Widget>
+      <Widget right={280} bottom={40} width={200}>
+        <Torrent />
       </Widget>
     </Fragment>
   );

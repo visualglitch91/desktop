@@ -25,6 +25,7 @@
     "node-fetch": "^2.6.1",
     "pkg-dir": "^5.0.0",
     "preact": "^10.5.7",
+    "qbittorrent-api-v2": "^1.2.2",
     "trakt.tv": "^8.0.0"
   },
   "eslintConfig": {
