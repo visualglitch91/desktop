@@ -1,0 +1,7 @@
+.Widget {
+  pointer-events: none;
+}
+
+.Widget > * {
+  pointer-events: all;
+}

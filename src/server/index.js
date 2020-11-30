@@ -4,13 +4,19 @@ import express from "express";
 import homeAssistant from "./home-assistant";
 import systemStats from "./system-stats";
 import habitica from "./habitica";
+import chromeLauncher from "./chrome-launcher";
+import lazySeal12 from "./lazy-seal-12";
 
 const PORT = process.env.PORT || 4123;
 const app = express();
+
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "client")));
 
 homeAssistant(app);
 systemStats(app);
 habitica(app);
+chromeLauncher(app);
+lazySeal12(app);
 
 app.listen(PORT, () => console.log("listening on port", PORT));

@@ -1,17 +1,22 @@
 import { h } from "preact";
+import "./Widget.css";
 
 const styleProps = ["top", "left", "bottom", "right", "width", "height"];
 
-function Widget({ children, ...props }) {
-  const style = { position: "absolute" };
+function Widget({ children, style, ...props }) {
+  const _style = { ...style, position: "absolute" };
 
   styleProps.forEach((name) => {
     if (props[name] !== undefined) {
-      style[name] = props[name];
+      _style[name] = props[name];
     }
   });
 
-  return <div style={style}>{children}</div>;
+  return (
+    <div style={_style} className="Widget">
+      {children}
+    </div>
+  );
 }
 
 export default Widget;

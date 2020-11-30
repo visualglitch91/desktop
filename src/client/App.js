@@ -8,6 +8,8 @@ import FancyClock from "./FancyClock";
 import Stats from "./Stats";
 import Spotify from "./Spotify";
 import Habitica from "./Habitica";
+import Bookmarks from "./Bookmarks";
+import HRLocker from "./HRLocker";
 
 function App() {
   const [hass, setHass] = useState();
@@ -56,6 +58,17 @@ function App() {
       </Widget>
       <Widget left={12} top={40}>
         <Habitica />
+      </Widget>
+      <Widget
+        right={12}
+        top={0}
+        bottom={0}
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <Bookmarks />
+      </Widget>
+      <Widget right={120} bottom={40}>
+        <HRLocker />
       </Widget>
     </Fragment>
   );

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Luz da Sala",
+    "entity_id": "switch.sonoff_1000b9a7ab_2",
+    "type": "switch"
+  },
+  {
+    "name": "Luminária da Sala",
+    "entity_id": "switch.sonoff_1000eaacb9",
+    "type": "switch"
+  },
+  {
+    "name": "Luz Ambiente",
+    "entity_id": "light.luz_ambiente",
+    "type": "light"
+  },
+  {
+    "name": "Climatizador",
+    "entity_id": "switch.ebe25519ec66e53c4e1i8o",
+    "type": "switch"
+  },
+  {
+    "name": "Luz da Mesa",
+    "entity_id": "switch.sonoff_1000b9a7ab_1",
+    "type": "switch"
+  },
+  {
+    "name": "Luz do Escritório",
+    "entity_id": "switch.sonoff_1000b98183",
+    "type": "switch"
+  },
+  {
+    "name": "Luminária do Escritório",
+    "entity_id": "switch.sonoff_1000d914e7",
+    "type": "switch"
+  },
+  {
+    "name": "Luz da Cozinha",
+    "entity_id": "switch.sonoff_1000b978df",
+    "type": "switch"
+  },
+  {
+    "name": "Luz da Lavanderia",
+    "entity_id": "switch.sonoff_1000b9c687_2",
+    "type": "switch"
+  },
+  {
+    "name": "Luz do Quarto",
+    "entity_id": "switch.sonoff_1000b9b3ce_2",
+    "type": "switch"
+  },
+  {
+    "name": "Ventilador",
+    "entity_id": "switch.sonoff_1000b9b3ce_1",
+    "type": "switch"
+  },
+  {
+    "name": "Luz da Sacada",
+    "entity_id": "switch.sonoff_1000b97bdc",
+    "type": "switch"
+  }
+]

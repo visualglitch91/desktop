@@ -1,0 +1,32 @@
+.Bookmarks {
+  padding: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+  color: #ffffff;
+}
+
+.Bookmarks li {
+  margin-bottom: 8px;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.Bookmarks li:hover {
+  opacity: 1;
+}
+
+.Bookmarks li img {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  border-radius: 4px;
+  filter: grayscale(100%);
+}
+
+.Bookmarks li:hover img {
+  filter: none;
+}
