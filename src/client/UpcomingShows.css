@@ -1,0 +1,22 @@
+.UpcomingShows {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: #ffffff;
+}
+
+.UpcomingShows li {
+  opacity: 0.6;
+}
+
+.UpcomingShows li:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.UpcomingShows__Line1 {
+  font-size: 12px;
+}
+
+.UpcomingShows__Line2 {
+  font-size: 10px;
+}

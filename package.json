@@ -9,7 +9,7 @@
     "dev:client": "parcel watch src/index.html --no-hmr -d dist/client",
     "dev:server": "run-p \"dev:server:*\"",
     "dev:server:parcel": "parcel watch src/server/index.js --target node --bundle-node-modules",
-    "dev:server:nodemon": "nodemon dist/index"
+    "dev:server:nodemon": "nodemon dist/index --ignore trakt_token.json"
   },
   "devDependencies": {
     "eslint": "^7.14.0",
@@ -23,7 +23,9 @@
     "@mdi/font": "^5.8.55",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
-    "preact": "^10.5.7"
+    "pkg-dir": "^5.0.0",
+    "preact": "^10.5.7",
+    "trakt.tv": "^8.0.0"
   },
   "eslintConfig": {
     "extends": "preact"

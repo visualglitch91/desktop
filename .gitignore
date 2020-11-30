@@ -5,3 +5,4 @@ src\server\secrets.json
 src\client\LightsAndSwitches__entities.json
 src/server/secrets.json
 src/client/LightsAndSwitches__entities.json
+trakt_token.json

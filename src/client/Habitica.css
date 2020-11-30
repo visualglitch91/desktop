@@ -31,7 +31,6 @@
 .Habitica__Checkbox {
   font-size: 18px;
   margin-right: 4px;
-  margin-top: -1px;
 }
 
 .Habitica__Habit span {
@@ -42,7 +41,7 @@
   cursor: pointer;
   font-size: 18px;
   margin-right: 4px;
-  margin-top: -1px;
+  margin-bottom: -1px;
   opacity: 0.6;
 }
 

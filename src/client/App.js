@@ -10,6 +10,7 @@ import Spotify from "./Spotify";
 import Habitica from "./Habitica";
 import Bookmarks from "./Bookmarks";
 import HRLocker from "./HRLocker";
+import UpcomingShows from "./UpcomingShows";
 
 function App() {
   const [hass, setHass] = useState();
@@ -54,6 +55,9 @@ function App() {
       </Widget>
       <Widget left={12} bottom={40}>
         <LightsAndSwitches hass={hass} />
+      </Widget>
+      <Widget left={200} bottom={40}>
+        <UpcomingShows />
       </Widget>
       <Widget right={12} bottom={40}>
         <TVControl />
