@@ -15,10 +15,13 @@ function refreshTokens() {
 }
 
 function getUpcomingShows() {
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - 7);
+
   return traktClient.calendars.my
     .shows({
-      start_date: new Date().toISOString().slice(0, 10),
-      days: "7",
+      start_date: startDate.toISOString().slice(0, 10),
+      days: "14",
       extended: "full",
     })
     .then((episodes) =>

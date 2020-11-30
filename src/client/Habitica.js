@@ -12,17 +12,17 @@ function Habitica() {
   function refreshStats() {
     fetch("/habitica/stats")
       .then((res) => res.json())
-      .then(({ data }) => setStats(data.stats));
+      .then(setStats);
   }
 
   function refreshData() {
     fetch("/habitica/tasks")
       .then((res) => res.json())
-      .then(({ data }) => setData(data));
+      .then(setData);
   }
 
   function score(task, direction) {
-    fetch(`/habitica/tasks/${task.id}/score/${direction}`, {
+    return fetch(`/habitica/tasks/${task.id}/score/${direction}`, {
       method: "POST",
     }).then(() => {
       refreshStats();
@@ -32,16 +32,13 @@ function Habitica() {
 
   function toggle(task) {
     score(task, task.completed ? "down" : "up").then(() => {
-      setData((data) => {
-        const _data = [...data];
-        const index = _data.findIndex((it) => it.id === task.id);
+      setData((prevData) => {
+        const data = [...prevData];
+        const index = data.findIndex((it) => it.id === task.id);
 
-        _data[index] = {
-          ..._data[index],
-          completed: !_data[index].completed,
-        };
+        data[index] = { ...data[index], completed: !data[index].completed };
 
-        return _data;
+        return data;
       });
     });
   }

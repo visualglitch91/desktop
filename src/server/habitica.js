@@ -3,6 +3,8 @@ import fetch from "node-fetch";
 const API = "https://habitica.com";
 const { HABITICA: credentials } = require("./secrets.json");
 
+const toJSON = (res) => res.json();
+
 function authFetch(path, options) {
   return fetch(path, {
     ...options,
@@ -17,14 +19,17 @@ function authFetch(path, options) {
 function habitica(app) {
   app.get("/habitica/stats", (_, res) => {
     authFetch(`${API}/api/v3/user`)
-      .then((res) => res.json())
-      .then((json) => res.send(json));
+      .then(toJSON)
+      .then((json) => res.send(json.data.stats));
   });
 
   app.get("/habitica/tasks", (_, res) => {
-    authFetch(`${API}/api/v3/tasks/user`)
-      .then((res) => res.json())
-      .then((json) => res.send(json));
+    Promise.all([
+      authFetch(`${API}/api/v3/tasks/user`).then(toJSON),
+      authFetch(`${API}/api/v3/tasks/user?type=completedTodos`).then(toJSON),
+    ]).then(([all, completedTodos]) => {
+      res.send([...all.data, ...completedTodos.data]);
+    });
   });
 
   app.post("/habitica/tasks/:taskId/score/:direction", (req, res) => {
@@ -33,7 +38,7 @@ function habitica(app) {
     authFetch(`${API}/api/v3/tasks/${taskId}/score/${direction}`, {
       method: "POST",
     })
-      .then((res) => res.json())
+      .then(toJSON)
       .then((json) => res.send(json));
   });
 }

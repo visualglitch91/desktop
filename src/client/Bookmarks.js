@@ -92,10 +92,10 @@ const links = [
       "https://play-lh.googleusercontent.com/iS3Wa525QXuFdSkWi-s45GUK4oiPpOgmWQosv81pk0P1dF8Al6opybbofk5v-5hTQhua=s180-rw",
   },
   {
-    name: "IFTTT",
-    url: "https://ifttt.com",
+    name: "Habitica",
+    url: "https://habitica.com/",
     icon:
-      "https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/54/b8/36/54b836ca-2e71-54c6-e650-f699535cabb0/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/246x0w.webp",
+      "https://is2-ssl.mzstatic.com/image/thumb/Purple124/v4/c2/b8/3f/c2b83f54-6aa7-fa47-2b44-a9d3c5bcf3e1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png",
   },
   {
     name: "Feedly",
