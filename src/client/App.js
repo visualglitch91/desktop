@@ -22,7 +22,11 @@ function parseHassState(json) {
 }
 
 function App() {
-  const [hass] = usePooling("/home-assistant/states", 5000, parseHassState);
+  const [hass, , setHass] = usePooling(
+    "/home-assistant/states",
+    5000,
+    parseHassState
+  );
 
   useEffect(() => {
     document.body.style.opacity = 1;
@@ -40,7 +44,7 @@ function App() {
         <Stats />
       </Widget>
       <Widget top={40} right={12} width={300}>
-        <Spotify hass={hass} />
+        <Spotify hass={hass} setHass={setHass} />
       </Widget>
       <Widget left={12} bottom={40}>
         <LightsAndSwitches hass={hass} />

@@ -7,10 +7,38 @@
   overflow: hidden;
 }
 
+.Spotify_AlbumPicWrapper {
+  position: relative;
+  margin-left: 8px;
+}
+
 .Spotify__AlbumPic {
   width: 48px;
   height: 48px;
-  margin-left: 8px;
+}
+
+.Spotify_PlayPause {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 200ms linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.Spotify_PlayPause:hover {
+  opacity: 1;
+}
+
+.Spotify_PlayPause .mdi {
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .Spotify__Details {
@@ -37,4 +65,21 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.Spotify_Buttons {
+  margin-top: 4px;
+  text-align: right;
+  color: #ffffff;
+}
+
+.Spotify_Buttons .mdi {
+  opacity: 0.5;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.Spotify_Buttons .mdi:hover {
+  opacity: 1;
 }

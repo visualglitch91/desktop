@@ -13,7 +13,6 @@ function usePooling(api, interval, parser = (f) => f) {
       .then((json) => propsRef.current.parser(json))
       .then((data) => {
         setData(data);
-
         refreshTimeout.current = setTimeout(refresh, propsRef.current.interval);
       });
   }, []);
