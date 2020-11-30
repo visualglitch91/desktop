@@ -60,7 +60,11 @@ function Habitica() {
   }, []);
 
   const tasks = useMemo(
-    () => data && data.filter((task) => task.type !== "habit" && task.isDue),
+    () =>
+      data &&
+      data.filter(
+        (task) => task.type === "todo" || (task.type === "daily" && task.isDue)
+      ),
     [data]
   );
 
