@@ -8,7 +8,7 @@ import Spacer from "../base/Spacer";
 function Torrent() {
   const [torrents] = usePooling("/qbittorrent/torrents", 15 * 1000);
 
-  if (!torrents) {
+  if (!torrents || !torrents.length) {
     return;
   }
 

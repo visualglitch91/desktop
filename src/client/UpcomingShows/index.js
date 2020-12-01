@@ -16,7 +16,7 @@ function formatDate(dateString) {
 function UpcomingShows() {
   const [episodes] = usePooling("/trakt/upcoming-shows", 24 * 60 * 60 * 1000);
 
-  if (!episodes) {
+  if (!episodes || !episodes.length) {
     return null;
   }
 
