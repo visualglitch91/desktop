@@ -2,7 +2,7 @@ import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import "./styles.css";
 
-function getTime(date) {
+function getTime(date: Date) {
   const hours = `0${date.getHours()}`.slice(-2);
   const minutes = `0${date.getMinutes()}`.slice(-2);
 
@@ -10,7 +10,7 @@ function getTime(date) {
 }
 
 function FancyClock() {
-  const [, forceRerender] = useState();
+  const [, forceRerender] = useState(0);
   const date = new Date();
 
   useEffect(() => {

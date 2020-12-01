@@ -1,4 +1,4 @@
-import { h } from "preact";
+import { h, ComponentProps } from "preact";
 import cx from "classnames";
 import Element from "./Element";
 import "./Icon.css";
@@ -10,7 +10,11 @@ function Icon({
   marginRight,
   size = "md",
   ...props
-}) {
+}: {
+  marginLeft?: boolean;
+  marginRight?: boolean;
+  size?: "sm" | "md" | "lg";
+} & ComponentProps<typeof Element>) {
   return (
     <Element
       component="span"

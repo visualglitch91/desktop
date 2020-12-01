@@ -9,4 +9,4 @@ window.isDesktop = window !== window.parent;
 document.body.style.backgroundImage = `url(${wallpaper})`;
 document.body.style.backgroundSize = "cover";
 
-render(<App />, document.getElementById("root"));
+render(<App />, document.getElementById("root") as HTMLElement); // this should never be null

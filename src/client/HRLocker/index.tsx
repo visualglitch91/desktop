@@ -3,7 +3,7 @@ import Text from "../base/Text";
 import "./styles.css";
 
 function HRLocker() {
-  function run(action) {
+  function run(action: HRLockerActions) {
     fetch("/lazy-seal-12", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -3,7 +3,7 @@ import usePooling from "../utils/usePooling";
 import ProgressBar from "../base/ProgressBar";
 import ListItem from "../base/ListItem";
 
-function Stat({ label, value }) {
+function Stat({ label, value }: { label: string; value: number }) {
   return (
     <ListItem extraMargin>
       <ProgressBar
@@ -17,10 +17,10 @@ function Stat({ label, value }) {
 }
 
 function Stats() {
-  const [stats] = usePooling("/system-stats", 5 * 1000);
+  const [stats] = usePooling<SystemStats>("/system-stats", 5 * 1000);
 
   if (!stats) {
-    return;
+    return null;
   }
 
   return (

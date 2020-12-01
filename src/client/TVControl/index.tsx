@@ -3,7 +3,12 @@ import Icon from "../base/Icon";
 import Text from "../base/Text";
 import "./styles.css";
 
-const commands = {
+interface Command {
+  type: "script" | "scene";
+  entityId: string;
+}
+
+const commands: { [key: string]: Command } = {
   prev_media: {
     type: "script",
     entityId: "script.android_tv_prev_media",
@@ -31,7 +36,7 @@ const commands = {
 };
 
 function TVControl() {
-  function run(command) {
+  function run(command: Command) {
     fetch(`home-assistant/${command.type}/${command.entityId}/run`);
   }
 

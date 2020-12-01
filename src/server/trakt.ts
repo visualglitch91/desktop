@@ -1,20 +1,21 @@
 import fs from "fs";
 import path from "path";
 import Trakt from "trakt.tv";
+import { Express } from "express";
 import rootdir from "./rootdir";
 
-const traktClient = new Trakt(require("./secrets.json").TRAKT);
+const traktClient: any = new Trakt(require("./secrets.json").TRAKT);
 const tokenFile = path.join(rootdir, "trakt_token.json");
 
 function refreshTokens() {
-  const storedTokens = JSON.parse(fs.readFileSync(tokenFile, "UTF-8"));
+  const storedTokens = JSON.parse(fs.readFileSync(tokenFile, "utf-8"));
 
-  traktClient.import_token(storedTokens).then((newTokens) => {
+  traktClient.import_token(storedTokens).then((newTokens: any) => {
     fs.writeFileSync(tokenFile, JSON.stringify(newTokens));
   });
 }
 
-function getUpcomingShows() {
+function getUpcomingShows(): Promise<Episode[]> {
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - 7);
 
@@ -24,8 +25,8 @@ function getUpcomingShows() {
       days: "14",
       extended: "full",
     })
-    .then((episodes) =>
-      episodes.map(({ first_aired, episode, show }) => ({
+    .then((episodes: any) =>
+      episodes.map(({ first_aired, episode, show }: any) => ({
         date: first_aired,
         show: show.title,
         season: episode.season,
@@ -35,7 +36,7 @@ function getUpcomingShows() {
     );
 }
 
-function trakt(app) {
+function trakt(app: Express) {
   refreshTokens();
   setInterval(refreshTokens, 24 * 60 * 60 * 1000);
 

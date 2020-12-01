@@ -1,11 +1,12 @@
-import fetch from "node-fetch";
+import fetch, { Response, RequestInit } from "node-fetch";
+import { Express } from "express";
 
 const API = "https://habitica.com";
 const { HABITICA: credentials } = require("./secrets.json");
 
-const toJSON = (res) => res.json();
+const toJSON = (res: Response) => res.json();
 
-function authFetch(path, options) {
+function authFetch(path: string, options?: RequestInit) {
   return fetch(path, {
     ...options,
     headers: {
@@ -16,7 +17,7 @@ function authFetch(path, options) {
   });
 }
 
-function habitica(app) {
+function habitica(app: Express) {
   app.get("/habitica/stats", (_, res) => {
     authFetch(`${API}/api/v3/user`)
       .then(toJSON)

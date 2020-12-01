@@ -113,7 +113,7 @@ const links = [
 ];
 
 function Bookmarks() {
-  function open(url) {
+  function open(url: string) {
     if (window.isDesktop) {
       fetch("/chrome-launcher", {
         method: "POST",

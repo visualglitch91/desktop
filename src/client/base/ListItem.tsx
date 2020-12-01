@@ -1,9 +1,13 @@
-import { h } from "preact";
+import { h, ComponentProps } from "preact";
 import cx from "classnames";
 import Element from "./Element";
 import "./ListItem.css";
 
-function ListItem({ className, extraMargin, ...props }) {
+function ListItem({
+  className,
+  extraMargin,
+  ...props
+}: { extraMargin?: boolean } & ComponentProps<typeof Element>) {
   return (
     <Element
       {...props}

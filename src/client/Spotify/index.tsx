@@ -1,26 +1,35 @@
 import { h } from "preact";
+import { StateUpdater } from "preact/hooks";
 import Icon from "../base/Icon";
 import Text from "../base/Text";
 import "./styles.css";
 
 const entityId = "media_player.spotify_visualglitch91";
 
-function Spotify({ hass, setHass }) {
-  const data = hass && hass[entityId];
-  const attributes = data && data.attributes;
+function Spotify({
+  hass,
+  setHass,
+}: {
+  hass: HomeAssistantEntityMap | undefined;
+  setHass: StateUpdater<HomeAssistantEntityMap | undefined>;
+}) {
+  const entity = hass && (hass[entityId] as HomeAssistantMediaPlayerEntity);
+  const attributes = entity && entity.attributes;
 
   if (!attributes || !attributes.media_title) {
     return null;
   }
 
-  function callService(service) {
+  function callService(service: string) {
     fetch(`/home-assistant/services/media_player/${service}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ entity_id: entityId }),
-    }).then(([state]) => {
-      setHass((entities) => ({ ...entities, [state.entity_id]: state }));
-    });
+    })
+      .then((res) => res.json())
+      .then(([state]: [HomeAssistantMediaPlayerEntity]) => {
+        setHass((entities) => ({ ...entities, [state.entity_id]: state }));
+      });
   }
 
   return (

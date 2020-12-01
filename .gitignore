@@ -4,5 +4,5 @@ dist
 trakt_token.json
 src\server\secrets.json
 src/server/secrets.json
-src\client\LightsAndSwitches\entities.json
-src/client/LightsAndSwitches/entities.json
+src\client\LightsAndSwitches\items.json
+src/client/LightsAndSwitches/items.json

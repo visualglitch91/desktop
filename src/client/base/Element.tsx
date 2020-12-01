@@ -1,4 +1,4 @@
-import { h } from "preact";
+import { h, AnyComponent } from "preact";
 import cx from "classnames";
 import "./Element.css";
 
@@ -8,7 +8,12 @@ function Element({
   className,
   component: Component = "div",
   ...props
-}) {
+}: {
+  hoverable?: boolean;
+  column?: boolean;
+  className?: string;
+  component?: any;
+} & Omit<h.JSX.HTMLAttributes, "size">) {
   return (
     <Component
       {...props}

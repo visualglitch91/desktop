@@ -9,10 +9,17 @@ import Icon from "../base/Icon";
 import Spacer from "../base/Spacer";
 
 function Habitica() {
-  const [stats, refreshStats] = usePooling("/habitica/stats", 60 * 1000);
-  const [data, , setData] = usePooling("/habitica/tasks", 60 * 1000);
+  const [stats, refreshStats] = usePooling<HabiticaStats>(
+    "/habitica/stats",
+    60 * 1000
+  );
 
-  function score(task, direction) {
+  const [data, , setData] = usePooling<HabiticaTask[]>(
+    "/habitica/tasks",
+    60 * 1000
+  );
+
+  function score(task: HabiticaTask, direction: "up" | "down") {
     return fetch(`/habitica/tasks/${task.id}/score/${direction}`, {
       method: "POST",
     }).then(() => {
@@ -21,10 +28,10 @@ function Habitica() {
     });
   }
 
-  function toggle(task) {
+  function toggle(task: HabiticaTask) {
     score(task, task.completed ? "down" : "up").then(() => {
       setData((prevData) => {
-        const data = [...prevData];
+        const data = prevData ? [...prevData] : [];
         const index = data.findIndex((it) => it.id === task.id);
 
         data[index] = { ...data[index], completed: !data[index].completed };
@@ -48,7 +55,7 @@ function Habitica() {
     [data]
   );
 
-  if (!tasks || !stats) {
+  if (!tasks || !stats || !habits) {
     return null;
   }
 

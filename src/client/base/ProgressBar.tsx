@@ -3,7 +3,17 @@ import cx from "classnames";
 import Text from "./Text";
 import "./ProgressBar.css";
 
-function ProgressBar({ accentColor, label, labelSize = "sm", value }) {
+function ProgressBar({
+  label,
+  value,
+  accentColor,
+  labelSize = "sm",
+}: {
+  label: string;
+  value: number;
+  accentColor?: boolean;
+  labelSize?: "sm" | "md" | "lg";
+}) {
   return (
     <div className="progress-bar">
       <Text size={labelSize} monospace>

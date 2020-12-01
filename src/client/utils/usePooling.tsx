@@ -1,19 +1,27 @@
 import { useRef, useState, useEffect, useCallback } from "preact/hooks";
 
-function usePooling(api, interval, parser = (f) => f) {
+function usePooling<T>(
+  api: string,
+  interval: number,
+  parser: (json: any) => T = (f) => f
+): [T | undefined, typeof refresh, typeof setData] {
   const propsRef = useRef({ api, interval, parser });
-  const refreshTimeout = useRef();
-  const [data, setData] = useState();
+  const refreshTimeout = useRef<number>();
+  const [data, setData] = useState<T | undefined>(undefined);
 
   const refresh = useCallback(function refresh() {
-    clearTimeout(refreshTimeout.current);
+    window.clearTimeout(refreshTimeout.current);
 
     fetch(propsRef.current.api)
       .then((res) => res.json())
-      .then((json) => propsRef.current.parser(json))
+      .then((json: any) => propsRef.current.parser(json))
       .then((data) => {
         setData(data);
-        refreshTimeout.current = setTimeout(refresh, propsRef.current.interval);
+
+        refreshTimeout.current = window.setTimeout(
+          refresh,
+          propsRef.current.interval
+        );
       });
   }, []);
 
@@ -25,7 +33,7 @@ function usePooling(api, interval, parser = (f) => f) {
     refresh();
 
     return () => {
-      clearTimeout(refreshTimeout.current);
+      window.clearTimeout(refreshTimeout.current);
     };
   }, [refresh]);
 

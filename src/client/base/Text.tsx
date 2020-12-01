@@ -1,9 +1,19 @@
-import { h } from "preact";
+import { h, ComponentProps } from "preact";
 import cx from "classnames";
 import Element from "./Element";
 import "./Text.css";
 
-function Text({ className, size = "md", monospace, ellipsis, ...props }) {
+function Text({
+  className,
+  size = "md",
+  monospace,
+  ellipsis,
+  ...props
+}: {
+  size?: "sm" | "md" | "lg";
+  monospace?: boolean;
+  ellipsis?: boolean;
+} & ComponentProps<typeof Element>) {
   return (
     <Element
       {...props}

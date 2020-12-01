@@ -6,10 +6,10 @@ import ListItem from "../base/ListItem";
 import Spacer from "../base/Spacer";
 
 function Torrent() {
-  const [torrents] = usePooling("/qbittorrent/torrents", 15 * 1000);
+  const [torrents] = usePooling<Torrent[]>("/qbittorrent/torrents", 15 * 1000);
 
   if (!torrents || !torrents.length) {
-    return;
+    return null;
   }
 
   return (
