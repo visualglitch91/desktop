@@ -1,8 +1,8 @@
 node_modules
 dist
 .cache
-src\server\secrets.json
-src\client\LightsAndSwitches__entities.json
-src/server/secrets.json
-src/client/LightsAndSwitches__entities.json
 trakt_token.json
+src\server\secrets.json
+src/server/secrets.json
+src\client\LightsAndSwitches\entities.json
+src/client/LightsAndSwitches/entities.json

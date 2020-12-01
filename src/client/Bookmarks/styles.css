@@ -1,0 +1,43 @@
+.bookmarks {
+  padding: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+
+.bookmarks li {
+  margin-bottom: 8px;
+  opacity: 0.6;
+  cursor: pointer;
+  color: inherit;
+  display: block;
+}
+
+.bookmarks li > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transform: translateX(0) translateZ(0px);
+  transition: transform 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.bookmarks li:hover {
+  opacity: 1;
+}
+
+.bookmarks li:hover > div {
+  transform: translateX(-10px) translateZ(0px);
+}
+
+.bookmarks li img {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  border-radius: 4px;
+  filter: grayscale(100%);
+  background-color: white;
+}
+
+.bookmarks li:hover img {
+  filter: none;
+}

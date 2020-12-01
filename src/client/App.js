@@ -1,9 +1,8 @@
 import { h, Fragment } from "preact";
 import { useEffect } from "preact/hooks";
-import usePooling from "./usePooling";
-import Widget from "./Widget";
+import usePooling from "./utils/usePooling";
+import Widget from "./base/Widget";
 import LightsAndSwitches from "./LightsAndSwitches";
-import ReloadButton from "./ReloadButton";
 import TVControl from "./TVControl";
 import FancyClock from "./FancyClock";
 import Stats from "./Stats";
@@ -13,6 +12,7 @@ import Bookmarks from "./Bookmarks";
 import HRLocker from "./HRLocker";
 import UpcomingShows from "./UpcomingShows";
 import Torrent from "./Torrent";
+import ReloadButton from "./ReloadButton";
 
 function parseHassState(json) {
   return json.reduce(
@@ -34,9 +34,7 @@ function App() {
 
   return (
     <Fragment>
-      <Widget top={0} left={0}>
-        <ReloadButton />
-      </Widget>
+      <ReloadButton />
       <Widget top={120} left="50%">
         <FancyClock />
       </Widget>
@@ -46,13 +44,13 @@ function App() {
       <Widget top={40} right={12} width={300}>
         <Spotify hass={hass} setHass={setHass} />
       </Widget>
-      <Widget left={12} bottom={40}>
+      <Widget left={12} bottom={45}>
         <LightsAndSwitches hass={hass} />
       </Widget>
-      <Widget left={200} bottom={40}>
+      <Widget left={200} bottom={45}>
         <UpcomingShows />
       </Widget>
-      <Widget right={12} bottom={40}>
+      <Widget right={12} bottom={45}>
         <TVControl />
       </Widget>
       <Widget left={12} top={40}>
@@ -66,10 +64,10 @@ function App() {
       >
         <Bookmarks />
       </Widget>
-      <Widget right={120} bottom={40}>
+      <Widget right={120} bottom={45}>
         <HRLocker />
       </Widget>
-      <Widget right={280} bottom={40} width={200}>
+      <Widget right={280} bottom={45} width={200}>
         <Torrent />
       </Widget>
     </Fragment>

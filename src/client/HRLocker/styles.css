@@ -1,0 +1,24 @@
+.hrlocker {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  margin-bottom: -4px; /* align with the base of the torrent widget */
+}
+
+.hrlocker__row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hrlocker__row:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.hrlocker__row > *:not(:last-child) {
+  margin-right: 8px;
+}
+
+.hrlocker__label {
+  justify-content: flex-end;
+}

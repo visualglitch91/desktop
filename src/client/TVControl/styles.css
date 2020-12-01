@@ -1,0 +1,15 @@
+.tvcontrol {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  margin-bottom: -4px; /* align with the base of the torrent widget */
+}
+
+.tvcontrol__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tvcontrol__row:not(:last-child) {
+  margin-bottom: 5.5px; /* weird value to align rows with the hrlocker widget */
+}

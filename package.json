@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@mdi/font": "^5.8.55",
+    "classnames": "^2.2.6",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "pkg-dir": "^5.0.0",

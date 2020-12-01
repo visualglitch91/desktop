@@ -1,0 +1,28 @@
+.text {
+  font-family: Open Sans;
+  color: inherit;
+}
+
+.text--size-lg {
+  font-size: 14px;
+}
+
+.text--size-md {
+  font-size: 12px;
+}
+
+.text--size-sm {
+  font-size: 10px;
+}
+
+.text--monospace {
+  font-family: monospace;
+}
+
+.text--ellipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}

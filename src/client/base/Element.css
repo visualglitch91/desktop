@@ -1,0 +1,19 @@
+.element {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.element--column {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.element--hoverable {
+  cursor: pointer;
+}
+
+.element--hoverable:hover {
+  color: rgba(255, 255, 255, 1);
+}
