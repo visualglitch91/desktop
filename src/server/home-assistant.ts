@@ -74,8 +74,6 @@ function homeAssistant(app: Express) {
   app.post("/home-assistant/services/:service/:action", (req, res) => {
     const { service, action } = req.params;
 
-    console.log({ service, action, body: req.body });
-
     fetch(`${API}/services/${service}/${action}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${TOKEN}` },

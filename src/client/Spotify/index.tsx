@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { StateUpdater } from "preact/hooks";
+import FadeIn from "../base/FadeIn";
 import Icon from "../base/Icon";
 import Text from "../base/Text";
 import "./styles.css";
@@ -16,10 +17,6 @@ function Spotify({
   const entity = hass && (hass[entityId] as HomeAssistantMediaPlayerEntity);
   const attributes = entity && entity.attributes;
 
-  if (!attributes || !attributes.media_title) {
-    return null;
-  }
-
   function callService(service: string) {
     fetch(`/home-assistant/services/media_player/${service}`, {
       method: "POST",
@@ -32,8 +29,12 @@ function Spotify({
       });
   }
 
+  if (!attributes || !attributes.media_title) {
+    return <FadeIn key="root" visible={false} />;
+  }
+
   return (
-    <div>
+    <FadeIn key="root" visible>
       <div className="spotify">
         <div className="spotify__details">
           <Text ellipsis monospace size="lg">
@@ -52,6 +53,7 @@ function Spotify({
           </div>
           <img
             className="spotify__album-pic"
+            key={attributes.entity_picture}
             src={`http://localhost:8123${attributes.entity_picture}`}
           />
         </div>
@@ -68,7 +70,7 @@ function Spotify({
           onClick={() => callService("media_next_track")}
         />
       </div>
-    </div>
+    </FadeIn>
   );
 }
 

@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
+import FadeIn from "../base/FadeIn";
 import ListItem from "../base/ListItem";
 import Text from "../base/Text";
 import Toggle from "../base/Toggle";
@@ -40,11 +41,11 @@ function LightsAndSwitches({
   }, [hass]);
 
   if (!states) {
-    return null;
+    return <FadeIn key="root" visible={false} />;
   }
 
   return (
-    <div>
+    <FadeIn key="root" visible>
       {items.map((item, index) => (
         <ListItem key={index} hoverable onClick={() => toggle(item)}>
           <Text>
@@ -57,7 +58,7 @@ function LightsAndSwitches({
           </Text>
         </ListItem>
       ))}
-    </div>
+    </FadeIn>
   );
 }
 

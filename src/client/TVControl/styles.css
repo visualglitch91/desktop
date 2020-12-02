@@ -11,5 +11,5 @@
 }
 
 .tvcontrol__row:not(:last-child) {
-  margin-bottom: 5.5px; /* weird value to align rows with the hrlocker widget */
+  margin-bottom: 8.5px; /* weird value to align rows with the hrlocker widget */
 }

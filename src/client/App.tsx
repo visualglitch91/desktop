@@ -31,10 +31,6 @@ function App() {
     parseHassState
   );
 
-  useEffect(() => {
-    document.body.style.opacity = "1";
-  }, []);
-
   return (
     <Fragment>
       <ReloadButton />
@@ -56,7 +52,7 @@ function App() {
       <Widget right={12} bottom={45}>
         <TVControl />
       </Widget>
-      <Widget left={12} top={40}>
+      <Widget left={12} top={40} width={250}>
         <Habitica />
       </Widget>
       <Widget

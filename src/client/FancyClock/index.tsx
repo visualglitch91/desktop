@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
+import AutoFadeIn from "../base/AutoFadeIn";
 import "./styles.css";
 
 function getTime(date: Date) {
@@ -24,7 +25,7 @@ function FancyClock() {
   }, []);
 
   return (
-    <div className="fancy-clock">
+    <AutoFadeIn className="fancy-clock">
       <div className="fancy-clock__time">{getTime(date)}</div>
       <div className="fancy-clock__weekday">
         {date
@@ -38,7 +39,7 @@ function FancyClock() {
           day: "numeric",
         })}
       </div>
-    </div>
+    </AutoFadeIn>
   );
 }
 

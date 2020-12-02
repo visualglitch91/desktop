@@ -1,12 +1,15 @@
 import { h } from "preact";
 import { useMemo } from "preact/hooks";
+import { DAY, timeAgo } from "../utils/date";
 import usePooling from "../utils/usePooling";
+import FadeIn from "../base/FadeIn";
 import ProgressBar from "../base/ProgressBar";
 import Checkbox from "../base/Checkbox";
 import ListItem from "../base/ListItem";
 import Text from "../base/Text";
 import Icon from "../base/Icon";
 import Spacer from "../base/Spacer";
+import Button from "../base/Button";
 
 function Habitica() {
   const [stats, refreshStats] = usePooling<HabiticaStats>(
@@ -14,7 +17,7 @@ function Habitica() {
     60 * 1000
   );
 
-  const [data, , setData] = usePooling<HabiticaTask[]>(
+  const [data, refreshData, setData] = usePooling<HabiticaTask[]>(
     "/habitica/tasks",
     60 * 1000
   );
@@ -31,22 +34,40 @@ function Habitica() {
   function toggle(task: HabiticaTask) {
     score(task, task.completed ? "down" : "up").then(() => {
       setData((prevData) => {
-        const data = prevData ? [...prevData] : [];
-        const index = data.findIndex((it) => it.id === task.id);
+        const data = [...(prevData || [])];
+        const updatedTask: HabiticaTask = { ...task };
 
-        data[index] = { ...data[index], completed: !data[index].completed };
+        updatedTask.completed = !updatedTask.completed;
+
+        if (updatedTask.completed) {
+          updatedTask.dateCompleted = Date.now().toString();
+        }
+
+        data[data.indexOf(task)] = updatedTask;
 
         return data;
       });
     });
   }
 
+  function startTheDay() {
+    return fetch("/habitica/start-the-day", { method: "POST" }).then(() => {
+      refreshStats();
+      refreshData();
+      return; // don't wait
+    });
+  }
+
   const tasks = useMemo(
     () =>
       data &&
-      data.filter(
-        (task) => task.type === "todo" || (task.type === "daily" && task.isDue)
-      ),
+      data.filter((task) => {
+        return (
+          (task.type === "daily" && task.isDue) ||
+          (task.type === "todo" &&
+            (!task.completed || timeAgo(task.dateCompleted) < 1.5 * DAY))
+        );
+      }),
     [data]
   );
 
@@ -56,21 +77,27 @@ function Habitica() {
   );
 
   if (!tasks || !stats || !habits) {
-    return null;
+    return <FadeIn key="root" visible={false} />;
   }
 
   return (
-    <div>
+    <FadeIn key="root" visible>
       <ListItem>
+        <Button onClick={startTheDay}>
+          <Text size="sm">Começar o dia</Text>
+        </Button>
+      </ListItem>
+      <Spacer />
+      <ListItem style={{ maxWidth: 180 }}>
         <ProgressBar
-          label={`HP: ${stats.hp}/${stats.maxHealth}`}
+          label={`HP: ${Math.floor(stats.hp)}/${Math.floor(stats.maxHealth)}`}
           value={(stats.hp / stats.maxHealth) * 100}
         />
       </ListItem>
       <Spacer />
-      <ListItem>
+      <ListItem style={{ maxWidth: 180 }}>
         <ProgressBar
-          label={`LEVEL: ${stats.exp}/${stats.toNextLevel}`}
+          label={`LEVEL ${stats.lvl}: ${stats.exp}/${stats.toNextLevel}`}
           value={(stats.exp / stats.toNextLevel) * 100}
         />
       </ListItem>
@@ -80,25 +107,23 @@ function Habitica() {
       </ListItem>
       {habits.map((habit) => (
         <ListItem key={habit.id}>
-          <Text>
-            {habit.down && (
-              <Icon
-                hoverable
-                marginRight
-                name="minus-box-outline"
-                onClick={() => score(habit, "down")}
-              />
-            )}
-            {habit.up && (
-              <Icon
-                hoverable
-                marginRight
-                name="plus-box-outline"
-                onClick={() => score(habit, "up")}
-              />
-            )}
-            {habit.text}
-          </Text>
+          {habit.down && (
+            <Icon
+              hoverable
+              marginRight
+              name="minus-box-outline"
+              onClick={() => score(habit, "down")}
+            />
+          )}
+          {habit.up && (
+            <Icon
+              hoverable
+              marginRight
+              name="plus-box-outline"
+              onClick={() => score(habit, "up")}
+            />
+          )}
+          <Text ellipsis>{habit.text}</Text>
         </ListItem>
       ))}
       <Spacer />
@@ -108,10 +133,10 @@ function Habitica() {
       {tasks.map((task) => (
         <ListItem key={task.id} hoverable onClick={() => toggle(task)}>
           <Checkbox marginRight checked={task.completed} />
-          {task.text}
+          <Text ellipsis>{task.text}</Text>
         </ListItem>
       ))}
-    </div>
+    </FadeIn>
   );
 }
 

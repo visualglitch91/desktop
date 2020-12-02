@@ -42,6 +42,15 @@ function habitica(app: Express) {
       .then(toJSON)
       .then((json) => res.send(json));
   });
+
+  app.post("/habitica/start-the-day", (_, res) => {
+    authFetch(`${API}/api/v3/cron`, {
+      method: "POST",
+      body: JSON.stringify({ data: {} }),
+    })
+      .then(toJSON)
+      .then((json) => res.send(json));
+  });
 }
 
 export default habitica;

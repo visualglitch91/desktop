@@ -1,3 +1,9 @@
+interface Bookmark {
+  name: string;
+  url: string;
+  icon: string;
+}
+
 interface Episode {
   date: string;
   show: string;
@@ -17,17 +23,26 @@ interface HabiticaStats {
   maxHealth: number;
   exp: number;
   toNextLevel: number;
+  lvl: number;
 }
 
-interface HabiticaTask {
+type HabiticaTask = {
   id: string;
   type: "todo" | "daily" | "habit";
   text: string;
   isDue: boolean;
-  completed: boolean;
   up: boolean;
   down: boolean;
-}
+} & (
+  | {
+      completed: false;
+      dateCompleted: undefined;
+    }
+  | {
+      completed: true;
+      dateCompleted: string;
+    }
+);
 
 type HRLockerActions = "clock_in" | "break_start" | "break_over" | "clock_out";
 

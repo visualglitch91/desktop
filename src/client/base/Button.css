@@ -1,0 +1,11 @@
+.button {
+  border: 1px solid currentColor;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-align: center;
+  justify-content: center;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

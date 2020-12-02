@@ -1,5 +1,6 @@
 import { h } from "preact";
 import usePooling from "../utils/usePooling";
+import FadeIn from "../base/FadeIn";
 import ProgressBar from "../base/ProgressBar";
 import Text from "../base/Text";
 import ListItem from "../base/ListItem";
@@ -9,11 +10,11 @@ function Torrent() {
   const [torrents] = usePooling<Torrent[]>("/qbittorrent/torrents", 15 * 1000);
 
   if (!torrents || !torrents.length) {
-    return null;
+    return <FadeIn key="root" visible={false} />;
   }
 
   return (
-    <div>
+    <FadeIn key="root" visible>
       <Text>Torrents</Text>
       <Spacer />
       <div>
@@ -28,7 +29,7 @@ function Torrent() {
           );
         })}
       </div>
-    </div>
+    </FadeIn>
   );
 }
 

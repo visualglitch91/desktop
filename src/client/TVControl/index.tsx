@@ -1,4 +1,5 @@
 import { h } from "preact";
+import AutoFadeIn from "../base/AutoFadeIn";
 import Icon from "../base/Icon";
 import Text from "../base/Text";
 import "./styles.css";
@@ -41,7 +42,7 @@ function TVControl() {
   }
 
   return (
-    <div className="tvcontrol">
+    <AutoFadeIn className="tvcontrol">
       <div className="tvcontrol__row">
         <Text>Controle da TV</Text>
       </div>
@@ -79,7 +80,7 @@ function TVControl() {
           onClick={() => run(commands.volume_up)}
         />
       </div>
-    </div>
+    </AutoFadeIn>
   );
 }
 

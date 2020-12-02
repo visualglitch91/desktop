@@ -13,6 +13,7 @@
 .spotify__album-pic {
   width: 52px;
   height: 52px;
+  background-color: #444444;
 }
 
 .spotify__play-pause {

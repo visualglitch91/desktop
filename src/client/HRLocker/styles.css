@@ -3,22 +3,21 @@
   flex-direction: column;
   justify-content: stretch;
   margin-bottom: -4px; /* align with the base of the torrent widget */
+  min-width: 150px;
 }
 
-.hrlocker__row {
+.hrlocker__buttons {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 8px;
 }
 
-.hrlocker__row:not(:last-child) {
-  margin-bottom: 8px;
-}
-
-.hrlocker__row > *:not(:last-child) {
-  margin-right: 8px;
+.hrlocker__buttons > * {
+  width: calc(50% - 4px);
 }
 
 .hrlocker__label {
+  text-align: right;
   justify-content: flex-end;
 }
