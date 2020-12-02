@@ -1,4 +1,5 @@
 import { h } from "preact";
+import { post } from "../utils/api";
 import AutoFadeIn from "../base/AutoFadeIn";
 import Icon from "../base/Icon";
 import Text from "../base/Text";
@@ -38,7 +39,9 @@ const commands: { [key: string]: Command } = {
 
 function TVControl() {
   function run(command: Command) {
-    fetch(`home-assistant/${command.type}/${command.entityId}/run`);
+    post(`home-assistant/services/${command.type}/turn_on`, {
+      entity_id: command.entityId,
+    });
   }
 
   return (

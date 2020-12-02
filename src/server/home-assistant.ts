@@ -23,53 +23,29 @@ function homeAssistant(app: Express) {
       .then((json) => res.send(json));
   });
 
-  app.get("/home-assistant/switch/:entityId/toggle", (req, res) => {
-    const { entityId } = req.params;
+  // app.post("/home-assistant/switch/:entityId/toggle", (req, res) => {
+  //   const { entityId } = req.params;
 
-    fetch(`${API}/services/switch/toggle`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${TOKEN}` },
-      body: JSON.stringify({ entity_id: entityId }),
-    })
-      .then((res) => res.json())
-      .then((json) => res.send(json));
-  });
+  //   fetch(`${API}/services/switch/toggle`, {
+  //     method: "POST",
+  //     headers: { Authorization: `Bearer ${TOKEN}` },
+  //     body: JSON.stringify({ entity_id: entityId }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => res.send(json));
+  // });
 
-  app.get("/home-assistant/light/:entityId/toggle", (req, res) => {
-    const { entityId } = req.params;
+  // app.post("/home-assistant/light/:entityId/toggle", (req, res) => {
+  //   const { entityId } = req.params;
 
-    fetch(`${API}/services/light/toggle`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${TOKEN}` },
-      body: JSON.stringify({ entity_id: entityId }),
-    })
-      .then((res) => res.json())
-      .then((json) => res.send(json));
-  });
-
-  app.get("/home-assistant/script/:entityId/run", (req, res) => {
-    const { entityId } = req.params;
-
-    fetch(`${API}/services/script/turn_on`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${TOKEN}` },
-      body: JSON.stringify({ entity_id: entityId }),
-    })
-      .then((res) => res.json())
-      .then((json) => res.send(json));
-  });
-
-  app.get("/home-assistant/scene/:entityId/run", (req, res) => {
-    const { entityId } = req.params;
-
-    fetch(`${API}/services/scene/turn_on`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${TOKEN}` },
-      body: JSON.stringify({ entity_id: entityId }),
-    })
-      .then((res) => res.json())
-      .then((json) => res.send(json));
-  });
+  //   fetch(`${API}/services/light/toggle`, {
+  //     method: "POST",
+  //     headers: { Authorization: `Bearer ${TOKEN}` },
+  //     body: JSON.stringify({ entity_id: entityId }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => res.send(json));
+  // });
 
   app.post("/home-assistant/services/:service/:action", (req, res) => {
     const { service, action } = req.params;

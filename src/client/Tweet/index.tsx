@@ -1,6 +1,7 @@
 import { h } from "preact";
 import cx from "classnames";
 import { useEffect, useRef, useState } from "preact/hooks";
+import { post } from "../utils/api";
 import AutoFadeIn from "../base/AutoFadeIn";
 import Icon from "../base/Icon";
 import "./styles.css";
@@ -10,34 +11,25 @@ function Tweet() {
   const [focused, setFocused] = useState(false);
 
   function tweet(text: string) {
-    return fetch("/ifttt/tweet", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ value1: text }),
-    });
+    return post("/ifttt/tweet", { value1: text });
   }
 
   useEffect(() => {
     if (focused) {
       if (window.isDesktop) {
         setFocused(false);
-        fetch("/zenity", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify([
-            "--text-info",
-            "--editable",
-            "--width=450",
-            "--height=150",
-            "--title=Novo tweet",
-          ]),
-        })
-          .then((res) => res.json())
-          .then((json) => {
-            if (json?.result) {
-              tweet(json.result);
-            }
-          });
+
+        post("/zenity", [
+          "--text-info",
+          "--editable",
+          "--width=450",
+          "--height=150",
+          "--title=Novo tweet",
+        ]).then((json) => {
+          if (json?.result) {
+            tweet(json.result);
+          }
+        });
       } else {
         inputRef.current.contentEditable = "true";
         inputRef.current.focus();

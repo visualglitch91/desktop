@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "preact/hooks";
+import { get } from "./api";
 
 function usePooling<T>(
   api: string,
@@ -12,8 +13,7 @@ function usePooling<T>(
   const refresh = useCallback(function refresh() {
     window.clearTimeout(refreshTimeout.current);
 
-    fetch(propsRef.current.api)
-      .then((res) => res.json())
+    get(propsRef.current.api)
       .then((json: any) => propsRef.current.parser(json))
       .then((data) => {
         setData(data);

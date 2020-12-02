@@ -1,4 +1,5 @@
 import { h } from "preact";
+import { post } from "../utils/api";
 import AutoFadeIn from "../base/AutoFadeIn";
 import Button from "../base/Button";
 import Text from "../base/Text";
@@ -6,11 +7,7 @@ import "./styles.css";
 
 function HRLocker() {
   function run(action: HRLockerActions) {
-    fetch("/lazy-seal-12", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ path: "hr-locker", action }),
-    });
+    post("/lazy-seal-12", { path: "hr-locker", action });
   }
 
   return (

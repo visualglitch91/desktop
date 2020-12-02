@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useMemo } from "preact/hooks";
 import { DAY, timeAgo } from "../utils/date";
 import usePooling from "../utils/usePooling";
+import { post } from "../utils/api";
 import FadeIn from "../base/FadeIn";
 import ProgressBar from "../base/ProgressBar";
 import Checkbox from "../base/Checkbox";
@@ -23,9 +24,7 @@ function Habitica() {
   );
 
   function score(task: HabiticaTask, direction: "up" | "down") {
-    return fetch(`/habitica/tasks/${task.id}/score/${direction}`, {
-      method: "POST",
-    }).then(() => {
+    return post(`/habitica/tasks/${task.id}/score/${direction}`).then(() => {
       refreshStats();
       return; // don't wait
     });
@@ -51,7 +50,7 @@ function Habitica() {
   }
 
   function startTheDay() {
-    return fetch("/habitica/start-the-day", { method: "POST" }).then(() => {
+    return post("/habitica/start-the-day").then(() => {
       refreshStats();
       refreshData();
       return; // don't wait

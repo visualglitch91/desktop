@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
+import { post } from "../utils/api";
 import FadeIn from "../base/FadeIn";
 import ListItem from "../base/ListItem";
 import Text from "../base/Text";
@@ -33,7 +34,9 @@ function LightsAndSwitches({
       };
     });
 
-    fetch(`home-assistant/${item.type}/${item.entity_id}/toggle`);
+    post(`home-assistant/services/${item.type}/toggle`, {
+      entity_id: item.entity_id,
+    });
   }
 
   useEffect(() => {

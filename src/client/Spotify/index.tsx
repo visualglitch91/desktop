@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { StateUpdater } from "preact/hooks";
+import { post } from "../utils/api";
 import FadeIn from "../base/FadeIn";
 import Icon from "../base/Icon";
 import Text from "../base/Text";
@@ -18,15 +19,11 @@ function Spotify({
   const attributes = entity && entity.attributes;
 
   function callService(service: string) {
-    fetch(`/home-assistant/services/media_player/${service}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ entity_id: entityId }),
-    })
-      .then((res) => res.json())
-      .then(([state]: [HomeAssistantMediaPlayerEntity]) => {
-        setHass((entities) => ({ ...entities, [state.entity_id]: state }));
-      });
+    post(`/home-assistant/services/media_player/${service}`, {
+      entity_id: entityId,
+    }).then(([state]: [HomeAssistantMediaPlayerEntity]) => {
+      setHass((entities) => ({ ...entities, [state.entity_id]: state }));
+    });
   }
 
   if (!attributes || !attributes.media_title) {
