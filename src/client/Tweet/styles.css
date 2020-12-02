@@ -1,0 +1,26 @@
+.tweet {
+  position: relative;
+  border: 1px solid currentColor;
+  font: inherit;
+  max-width: 350px;
+  transform: translateX(-50%);
+  padding: 4px 8px 5px 24px;
+  border-radius: 4px;
+  cursor: text;
+}
+
+.tweet--focused {
+  color: rgba(255, 255, 255, 1);
+}
+
+.tweet__input {
+  display: block;
+  min-height: 16px;
+  outline: none;
+}
+
+.tweet__icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}

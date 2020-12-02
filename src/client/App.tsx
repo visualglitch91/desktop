@@ -13,6 +13,7 @@ import HRLocker from "./HRLocker";
 import UpcomingShows from "./UpcomingShows";
 import Torrent from "./Torrent";
 import ReloadButton from "./ReloadButton";
+import Tweet from "./Tweet";
 
 function parseHassState(json: any): HomeAssistantEntityMap {
   return json.reduce(
@@ -34,6 +35,9 @@ function App() {
   return (
     <Fragment>
       <ReloadButton />
+      <Widget right={40} left="50%">
+        <Tweet />
+      </Widget>
       <Widget top={120} left="50%">
         <FancyClock />
       </Widget>

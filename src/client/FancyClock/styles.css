@@ -1,6 +1,6 @@
 .fancy-clock {
   position: relative;
-  left: -50%;
+  transform: translateX(-50%);
   text-align: center;
   color: #ffffff;
 }
@@ -10,6 +10,7 @@
   font-weight: bolder;
   letter-spacing: -12px;
   opacity: 0.4;
+  margin-left: -30px; /* compensate font face weirdness */
 }
 
 .fancy-clock__weekday {
