@@ -1,7 +1,7 @@
 function request(path: string, method: "GET" | "POST", body?: any) {
   return fetch(path, {
     method: method,
-    headers: { "Content-Type": "application/json" },
+    headers: { "content-type": "application/json" },
     body: body && JSON.stringify(body),
   }).then((res) => res.json());
 }

@@ -1,56 +1,36 @@
-import fetch, { Response, RequestInit } from "node-fetch";
 import { Express } from "express";
+import fetch, { RequestInit } from "node-fetch";
+import proxy from "./proxy";
 
-const API = "https://habitica.com";
+const API = "https://habitica.com/api/v3";
 const { HABITICA: credentials } = require("./secrets.json");
 
-const toJSON = (res: Response) => res.json();
+const headers = {
+  "x-api-user": credentials.user_id,
+  "x-api-key": credentials.token,
+};
 
 function authFetch(path: string, options?: RequestInit) {
   return fetch(path, {
     ...options,
     headers: {
+      ...headers,
       "Content-Type": "application/json",
-      "x-api-user": credentials.user_id,
-      "x-api-key": credentials.token,
     },
-  });
+  }).then((res) => res.json());
 }
 
 function habitica(app: Express) {
-  app.get("/habitica/stats", (_, res) => {
-    authFetch(`${API}/api/v3/user`)
-      .then(toJSON)
-      .then((json) => res.send(json.data.stats));
-  });
-
   app.get("/habitica/tasks", (_, res) => {
     Promise.all([
-      authFetch(`${API}/api/v3/tasks/user`).then(toJSON),
-      authFetch(`${API}/api/v3/tasks/user?type=completedTodos`).then(toJSON),
+      authFetch(`${API}/tasks/user`),
+      authFetch(`${API}/tasks/user?type=completedTodos`),
     ]).then(([all, completedTodos]) => {
       res.send([...all.data, ...completedTodos.data]);
     });
   });
 
-  app.post("/habitica/tasks/:taskId/score/:direction", (req, res) => {
-    const { taskId, direction } = req.params;
-
-    authFetch(`${API}/api/v3/tasks/${taskId}/score/${direction}`, {
-      method: "POST",
-    })
-      .then(toJSON)
-      .then((json) => res.send(json));
-  });
-
-  app.post("/habitica/start-the-day", (_, res) => {
-    authFetch(`${API}/api/v3/cron`, {
-      method: "POST",
-      body: JSON.stringify({ data: {} }),
-    })
-      .then(toJSON)
-      .then((json) => res.send(json));
-  });
+  app.use("/habitica", proxy({ target: API, headers }));
 }
 
 export default habitica;

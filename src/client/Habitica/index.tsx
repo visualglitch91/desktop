@@ -14,8 +14,9 @@ import Button from "../base/Button";
 
 function Habitica() {
   const [stats, refreshStats] = usePooling<HabiticaStats>(
-    "/habitica/stats",
-    60 * 1000
+    "/habitica/user",
+    60 * 1000,
+    (json) => json.data.stats
   );
 
   const [data, refreshData, setData] = usePooling<HabiticaTask[]>(
@@ -50,7 +51,7 @@ function Habitica() {
   }
 
   function startTheDay() {
-    return post("/habitica/start-the-day").then(() => {
+    return post("/habitica/cron", { data: {} }).then(() => {
       refreshStats();
       refreshData();
       return; // don't wait
