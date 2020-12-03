@@ -15,7 +15,7 @@ function zenity(app: Express) {
     });
 
     child.stderr.on("data", (error) => {
-      console.error(error);
+      console.error(String(error));
     });
   });
 }

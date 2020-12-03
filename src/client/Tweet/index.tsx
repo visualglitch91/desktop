@@ -2,6 +2,7 @@ import { h } from "preact";
 import cx from "classnames";
 import { useEffect, useRef, useState } from "preact/hooks";
 import { post } from "../utils/api";
+import zenity from "../utils/zenity";
 import AutoFadeIn from "../base/AutoFadeIn";
 import Icon from "../base/Icon";
 import "./styles.css";
@@ -19,15 +20,15 @@ function Tweet() {
       if (window.isDesktop) {
         setFocused(false);
 
-        post("/zenity", [
+        zenity(
           "--text-info",
           "--editable",
           "--width=450",
           "--height=150",
-          "--title=Novo tweet",
-        ]).then((json) => {
-          if (json?.result) {
-            tweet(json.result);
+          "--title=Novo tweet"
+        ).then((result) => {
+          if (result) {
+            tweet(result);
           }
         });
       } else {

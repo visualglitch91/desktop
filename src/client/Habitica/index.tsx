@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useMemo } from "preact/hooks";
 import { DAY, timeAgo } from "../utils/date";
 import usePooling from "../utils/usePooling";
+import zenity from "../utils/zenity";
 import { post } from "../utils/api";
 import FadeIn from "../base/FadeIn";
 import ProgressBar from "../base/ProgressBar";
@@ -56,6 +57,20 @@ function Habitica() {
       refreshData();
       return; // don't wait
     });
+  }
+
+  async function addTodo() {
+    const text = await zenity(
+      "--entry",
+      "--title=Nova Tarefa",
+      "--text=Digite a descrição da tarefa",
+      "--width=250"
+    );
+
+    if (text) {
+      await post("/habitica/tasks/user", { text, type: "todo" });
+      refreshData();
+    }
   }
 
   const tasks = useMemo(
@@ -128,7 +143,15 @@ function Habitica() {
       ))}
       <Spacer />
       <ListItem extraMargin>
-        <Text>Tarefas</Text>
+        <Text>
+          Tarefas
+          <Icon
+            hoverable
+            marginLeft
+            name="plus-box-outline"
+            onClick={addTodo}
+          />
+        </Text>
       </ListItem>
       {tasks.map((task) => (
         <ListItem key={task.id} hoverable onClick={() => toggle(task)}>
