@@ -1,5 +1,6 @@
 import path from "path";
 import express from "express";
+import cors from "cors";
 
 import homeAssistant from "./home-assistant";
 import systemStats from "./system-stats";
@@ -16,6 +17,10 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "client")));
+
+app.get("/ping", cors(), (_, res) => {
+  res.sendStatus(204);
+});
 
 homeAssistant(app);
 systemStats(app);
