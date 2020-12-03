@@ -18,14 +18,16 @@ function refreshTokens() {
 }
 
 function refreshUpcoming() {
+  const past = 14;
+  const future = 7;
   const startDate = new Date();
-  startDate.setDate(startDate.getDate() - 7);
+  startDate.setDate(startDate.getDate() - past);
 
   upcomingPromise = Promise.all([
     traktClient.sync.watched({ type: "shows" }),
     traktClient.calendars.my.shows({
       start_date: startDate.toISOString().slice(0, 10),
-      days: "14",
+      days: String(past + future),
       extended: "full",
     }),
   ]).then(([watched, episodes]: any) => {
