@@ -70,7 +70,7 @@ function App() {
       <Widget right={120} bottom={45}>
         <HRLocker />
       </Widget>
-      <Widget right={280} bottom={45} width={200}>
+      <Widget right={305} bottom={45} width={200}>
         <Torrent />
       </Widget>
     </Fragment>

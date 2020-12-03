@@ -18,6 +18,11 @@ interface Torrent {
   size: number;
 }
 
+interface TorrentState {
+  running: boolean;
+  torrents: Torrent[];
+}
+
 interface HabiticaStats {
   hp: number;
   maxHealth: number;
@@ -64,6 +69,7 @@ interface HomeAssistantMediaPlayerEntity extends BaseHomeAssistantEntity {
 type HomeAssistantEntityMap = { [entityId: string]: BaseHomeAssistantEntity };
 
 interface SystemStats {
+  vpn: boolean;
   memory: number;
   cpu: number;
   disks: { [key: string]: number };

@@ -2,6 +2,17 @@ import os from "os";
 import { spawn } from "child_process";
 import { Express } from "express";
 
+const { NORDVPN_PATH: nordvpn } = require("./secrets.json");
+
+function getVPNStatus() {
+  return new Promise<boolean>((resolve) => {
+    spawn("netsh", ["interface", "show", "interface", "NordLynx"], {
+      detached: true,
+    }).stdout.on("data", (data) => {
+      resolve(!String(data).includes("Desconectado"));
+    });
+  });
+}
 function getMemory() {
   try {
     const total = parseInt(String(os.totalmem()), 10);
@@ -75,11 +86,28 @@ function getDisks() {
 }
 
 function systemStats(app: Express) {
-  const state: SystemStats = { memory: 0, cpu: 0, disks: {} };
+  let frozen = false;
+  let unfreezeTimeout: NodeJS.Timeout;
+  const state: SystemStats = { vpn: false, memory: 0, cpu: 0, disks: {} };
+
+  function freeze(ms = 1000) {
+    frozen = true;
+
+    clearTimeout(unfreezeTimeout);
+
+    unfreezeTimeout = setTimeout(() => {
+      frozen = false;
+    }, ms);
+  }
 
   function update() {
-    Promise.all([getMemory(), getCPU(), getDisks()]).then(
-      ([memory, cpu, disks]) => {
+    if (frozen) {
+      return;
+    }
+
+    Promise.all([getVPNStatus(), getMemory(), getCPU(), getDisks()]).then(
+      ([vpn, memory, cpu, disks]) => {
+        state.vpn = vpn;
         state.memory = memory;
         state.cpu = cpu;
         state.disks = disks;
@@ -92,6 +120,22 @@ function systemStats(app: Express) {
 
   app.get("/system-stats", (_, res) => {
     res.send(state);
+  });
+
+  app.post("/system-stats/vpn/toggle", (_, res) => {
+    freeze(3000); // freeze updates until the vpn connects/disconnects
+
+    spawn(
+      nordvpn,
+      state.vpn ? ["--disconnect"] : ["--connect", "-g", "Brazil"],
+      {
+        detached: true,
+      }
+    );
+
+    state.vpn = !state.vpn;
+
+    res.send({ result: true });
   });
 }
 
