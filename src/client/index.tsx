@@ -6,7 +6,16 @@ import "./index.css";
 
 window.isDesktop = window !== window.parent;
 
-document.body.style.backgroundImage = `url(${wallpaper})`;
-document.body.style.backgroundSize = "cover";
+const root = document.getElementById("root") as HTMLElement; // this should never be null
+const bg = document.getElementById("bg") as HTMLElement; // this should never be null
 
-render(<App />, document.getElementById("root") as HTMLElement); // this should never be null
+const bgImg = document.createElement("img");
+
+bgImg.src = wallpaper;
+bg.appendChild(bgImg);
+
+bgImg.onload = () => {
+  document.body.classList.add("loaded");
+};
+
+render(<App />, root);

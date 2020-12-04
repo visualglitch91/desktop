@@ -49,18 +49,21 @@ function LightsAndSwitches({
 
   return (
     <FadeIn key="root" visible>
-      {items.map((item, index) => (
-        <ListItem key={index} hoverable onClick={() => toggle(item)}>
-          <Text>
-            <Toggle
-              marginRight
-              size="lg"
-              checked={states[item.entity_id].state === "on"}
-            />
-            {item.name}
-          </Text>
-        </ListItem>
-      ))}
+      {items.map(
+        (item, index) =>
+          states[item.entity_id] && (
+            <ListItem key={index} hoverable onClick={() => toggle(item)}>
+              <Text>
+                <Toggle
+                  marginRight
+                  size="lg"
+                  checked={states[item.entity_id].state === "on"}
+                />
+                {item.name}
+              </Text>
+            </ListItem>
+          )
+      )}
     </FadeIn>
   );
 }
