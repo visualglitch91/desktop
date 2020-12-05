@@ -50,6 +50,22 @@
     "type": "switch"
   },
   {
+    "name": "Abajur Erica",
+    "entity_id": "switch.sonoff_1000ab69f2",
+    "type": "switch"
+  },
+
+  {
+    "name": "Abajur Lais",
+    "entity_id": "switch.sonoff_1000ab5a91",
+    "type": "switch"
+  },
+  {
+    "name": " Umidificador",
+    "entity_id": "switch.sonoff_1000abbf2b",
+    "type": "switch"
+  },
+  {
     "name": "Ventilador",
     "entity_id": "switch.sonoff_1000b9b3ce_1",
     "type": "switch"
