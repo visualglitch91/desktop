@@ -7,7 +7,7 @@ import "./styles.css";
 
 function HRLocker() {
   function run(action: HRLockerActions) {
-    post("/lazy-seal-12", { path: "hr-locker", action });
+    post("/lazy-seal-12/hr-locker", { action });
   }
 
   return (

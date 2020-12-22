@@ -14,7 +14,7 @@ interface Episode {
 
 interface Torrent {
   name: string;
-  downloaded: number;
+  completed: number;
   size: number;
 }
 

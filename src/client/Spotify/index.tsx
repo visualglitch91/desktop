@@ -51,7 +51,7 @@ function Spotify({
           <img
             className="spotify__album-pic"
             key={attributes.entity_picture}
-            src={`http://localhost:8123${attributes.entity_picture}`}
+            src={`http://192.168.0.16:8123${attributes.entity_picture}`}
           />
         </div>
       </div>

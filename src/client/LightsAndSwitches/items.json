@@ -30,6 +30,11 @@
     "type": "switch"
   },
   {
+    "name": "Ventilador do Escritório",
+    "entity_id": "switch.ventilador_escritorio",
+    "type": "switch"
+  },
+  {
     "name": "Luminária do Escritório",
     "entity_id": "switch.sonoff_1000d914e7",
     "type": "switch"

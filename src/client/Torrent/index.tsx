@@ -58,7 +58,7 @@ function Torrent() {
       <Spacer />
       <div>
         {state.torrents.map((torrent) => {
-          const percent = (torrent.downloaded * 100) / torrent.size;
+          const percent = (torrent.completed * 100) / torrent.size;
 
           return (
             <ListItem column extraMargin>

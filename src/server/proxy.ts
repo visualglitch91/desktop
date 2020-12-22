@@ -21,6 +21,9 @@ function proxy({
   bodyParser?: (a: any) => any;
 }) {
   return (req: Request, res: Response) => {
+    console.log("url", join(target, req.path));
+    console.log("body", JSON.stringify(bodyParser(req.body)));
+
     fetch(join(target, req.path), {
       method: req.method,
       headers: { ...headers, "Content-Type": "application/json" },
