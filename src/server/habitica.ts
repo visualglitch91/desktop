@@ -2,8 +2,9 @@ import { Express } from "express";
 import fetch, { RequestInit } from "node-fetch";
 import proxy from "./proxy";
 
-const API = "https://habitica.com/api/v3";
+//eslint-disable-next-line @typescript-eslint/no-var-requires
 const { HABITICA: credentials } = require("./secrets.json");
+const API = "https://habitica.com/api/v3";
 
 const headers = {
   "x-api-user": credentials.user_id,

@@ -22,7 +22,7 @@ function Torrent() {
     });
   }
 
-  let message = !state.running ? (
+  const message = !state.running ? (
     <Fragment>
       <Text style={{ justifyContent: "flex-end" }}>
         Torrent client is

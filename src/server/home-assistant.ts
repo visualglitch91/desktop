@@ -3,7 +3,7 @@ import proxy from "./proxy";
 
 const {
   HOME_ASSISTANT: { server, token },
-} = require("./secrets.json");
+} = require("./secrets.json"); //eslint-disable-line @typescript-eslint/no-var-requires
 
 function homeAssistant(app: Express) {
   app.use(

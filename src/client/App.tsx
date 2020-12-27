@@ -1,5 +1,4 @@
 import { h, Fragment } from "preact";
-import { useEffect } from "preact/hooks";
 import usePooling from "./utils/usePooling";
 import Widget from "./base/Widget";
 import LightsAndSwitches from "./LightsAndSwitches";

@@ -4,6 +4,7 @@ import Trakt from "trakt.tv";
 import { Express } from "express";
 import rootdir from "./rootdir";
 
+//eslint-disable-next-line @typescript-eslint/no-var-requires
 const traktClient: any = new Trakt(require("./secrets.json").TRAKT);
 const tokenFile = path.join(rootdir, "trakt_token.json");
 

@@ -15,10 +15,12 @@ function formatDate(dateString: string) {
 }
 
 function UpcomingShows() {
-  const [episodes] = usePooling<Episode[]>(
+  const [allEpisodes] = usePooling<Episode[]>(
     "/trakt/upcoming-shows",
     24 * 60 * 60 * 1000
   );
+
+  const episodes = (allEpisodes || []).slice(0, -7);
 
   if (!episodes || !episodes.length) {
     return <FadeIn key="root" visible={false} />;

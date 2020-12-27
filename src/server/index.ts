@@ -18,6 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "client")));
 
+//@ts-ignore
 app.get("/ping", cors(), (_, res) => {
   res.sendStatus(204);
 });

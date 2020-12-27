@@ -4,10 +4,11 @@ import FadeIn from "../base/FadeIn";
 import Element from "../base/Element";
 import "./styles.css";
 
+//eslint-disable-next-line @typescript-eslint/no-var-requires
 const links: Bookmark[] = require("./links.json");
 
 function whenLoaded(img: HTMLImageElement) {
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     if (img.complete && img.naturalHeight !== 0) {
       resolve();
     } else {

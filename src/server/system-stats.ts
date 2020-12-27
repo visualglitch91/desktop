@@ -2,6 +2,7 @@ import os from "os";
 import { spawn } from "child_process";
 import { Express } from "express";
 
+//eslint-disable-next-line @typescript-eslint/no-var-requires
 const { NORDVPN_PATH: nordvpn } = require("./secrets.json");
 
 function getVPNStatus() {

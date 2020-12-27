@@ -7,7 +7,7 @@ type Headers = {
 
 function join(base: string, relative: string) {
   return relative
-    ? base.replace(/\/+$/, "") + "/" + relative.replace(/^\/+/, "")
+    ? `${base.replace(/\/+$/, "")}/${relative.replace(/^\/+/, "")}`
     : base;
 }
 

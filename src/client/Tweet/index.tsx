@@ -57,7 +57,7 @@ function Tweet() {
             e.currentTarget.blur();
           }
         }}
-      ></span>
+      />
     </AutoFadeIn>
   );
 }

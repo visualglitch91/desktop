@@ -12,6 +12,7 @@ interface LightsOrSwitchItem {
   type: "switch" | "light";
 }
 
+//eslint-disable-next-line @typescript-eslint/no-var-requires
 const items: LightsOrSwitchItem[] = require("./items.json");
 
 function LightsAndSwitches({
