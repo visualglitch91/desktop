@@ -14,8 +14,23 @@ const bgImg = document.createElement("img");
 bgImg.src = wallpaper;
 bg.appendChild(bgImg);
 
-bgImg.onload = () => {
-  document.body.classList.add("loaded");
-};
+function onResize() {
+  const width = 1920;
+  const height = (window.innerHeight / window.innerWidth) * width;
+  const scale = window.innerWidth / width;
 
+  root.style.width = `${width}px`;
+  root.style.height = `${height}px`;
+  root.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("resize", () => {
+  onResize();
+});
+
+bgImg.addEventListener("load", () => {
+  document.body.classList.add("loaded");
+});
+
+onResize();
 render(<App />, root);
