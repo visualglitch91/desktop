@@ -1,5 +1,6 @@
 import { h } from "preact";
 import usePooling from "../utils/usePooling";
+import { take } from "../utils/array";
 import FadeIn from "../base/FadeIn";
 import ListItem from "../base/ListItem";
 import Text from "../base/Text";
@@ -20,15 +21,13 @@ function UpcomingShows() {
     24 * 60 * 60 * 1000
   );
 
-  const episodes = (allEpisodes || []).slice(0, -7);
-
-  if (!episodes || !episodes.length) {
+  if (!allEpisodes || !allEpisodes.length) {
     return <FadeIn key="root" visible={false} />;
   }
 
   return (
     <FadeIn key="root" visible>
-      {episodes.map((episode, index) => (
+      {take(allEpisodes, 7).map((episode, index) => (
         <ListItem key={index} column extraMargin>
           <Text>
             {formatDate(episode.date)} - {episode.show}

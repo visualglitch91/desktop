@@ -15,7 +15,7 @@ bgImg.src = wallpaper;
 bg.appendChild(bgImg);
 
 function onResize() {
-  const width = 1920;
+  const width = 2010;
   const height = (window.innerHeight / window.innerWidth) * width;
   const scale = window.innerWidth / width;
 
