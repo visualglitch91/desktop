@@ -1,6 +1,7 @@
 import path from "path";
 import express from "express";
 import cors from "cors";
+import wallpaper from "wallpaper";
 
 import homeAssistant from "./home-assistant";
 import systemStats from "./system-stats";
@@ -21,6 +22,10 @@ app.use(express.static(path.join(__dirname, "client")));
 //@ts-ignore
 app.get("/ping", cors(), (_, res) => {
   res.sendStatus(204);
+});
+
+app.get("/wallpaper", (_, res) => {
+  wallpaper.get().then((path) => res.sendFile(path));
 });
 
 homeAssistant(app);

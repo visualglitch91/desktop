@@ -2,10 +2,11 @@
   "scripts": {
     "clean": "rimraf dist .cache",
     "start": "node dist/index.js",
-    "build": "npm run clean && npm run build:server && npm run build:client",
+    "copy-wallpaper-tool": "cp-cli node_modules/wallpaper/source/win-wallpaper.exe dist/win-wallpaper.exe",
+    "build": "npm run clean && npm run copy-wallpaper-tool && npm run build:server && npm run build:client",
     "build:client": "parcel build src/index.html -d dist/client",
     "build:server": "parcel build src/server/index.ts --target node --bundle-node-modules",
-    "dev": "npm run clean && run-p \"dev:*\"",
+    "dev": "npm run clean && npm run copy-wallpaper-tool && run-p \"dev:*\"",
     "dev:client": "parcel watch src/index.html --no-hmr -d dist/client",
     "dev:server": "run-p \"dev:server:*\"",
     "dev:server:parcel": "parcel watch src/server/index.ts --target node --bundle-node-modules",
@@ -36,12 +37,14 @@
     "@mdi/font": "^5.8.55",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
+    "cp-cli": "^2.0.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "pkg-dir": "^5.0.0",
     "preact": "^10.5.7",
     "qbittorrent-api-v2": "^1.2.2",
-    "trakt.tv": "^8.0.0"
+    "trakt.tv": "^8.0.0",
+    "wallpaper": "^4.4.2"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",

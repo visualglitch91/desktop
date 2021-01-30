@@ -31,7 +31,7 @@
   },
   {
     "name": "Ventilador do Escritório",
-    "entity_id": "switch.ventilador_escritorio",
+    "entity_id": "switch.eb7c543d23a9a7dad3gfqr",
     "type": "switch"
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "name": "Luz da Cozinha",
-    "entity_id": "switch.sonoff_1000b978df",
+    "entity_id": "switch.luz_da_cozinha",
     "type": "switch"
   },
   {
