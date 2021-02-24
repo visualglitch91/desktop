@@ -2,10 +2,9 @@ import { h } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 import FadeIn from "../base/FadeIn";
 import Element from "../base/Element";
+import Panel from "../base/Panel";
+import links from "./links";
 import "./styles.css";
-
-//eslint-disable-next-line @typescript-eslint/no-var-requires
-const links: Bookmark[] = require("./links.json");
 
 function whenLoaded(img: HTMLImageElement) {
   return new Promise<void>((resolve) => {
@@ -43,21 +42,23 @@ function Bookmarks() {
 
   return (
     <FadeIn visible={visible}>
-      <ul ref={ulRef} className="bookmarks">
-        {links.map((link, index) => (
-          <Element
-            hoverable
-            key={index}
-            component="li"
-            onClick={() => open(link.url)}
-          >
-            <div>
-              {link.name}
-              <img src={link.icon} />
-            </div>
-          </Element>
-        ))}
-      </ul>
+      <Panel style={{ paddingLeft: 24 }}>
+        <ul ref={ulRef} className="bookmarks">
+          {links.map((link, index) => (
+            <Element
+              hoverable
+              key={index}
+              component="li"
+              onClick={() => open(link.url)}
+            >
+              <div>
+                {link.name}
+                <img src={link.icon} />
+              </div>
+            </Element>
+          ))}
+        </ul>
+      </Panel>
     </FadeIn>
   );
 }

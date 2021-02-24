@@ -4,6 +4,7 @@ import { take } from "../utils/array";
 import FadeIn from "../base/FadeIn";
 import ListItem from "../base/ListItem";
 import Text from "../base/Text";
+import Panel from "../base/Panel";
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("pt-BR", {
@@ -27,16 +28,18 @@ function UpcomingShows() {
 
   return (
     <FadeIn key="root" visible>
-      {take(allEpisodes, 7).map((episode, index) => (
-        <ListItem key={index} column extraMargin>
-          <Text>
-            {formatDate(episode.date)} - {episode.show}
-          </Text>
-          <Text size="sm">
-            {episode.season}x{episode.number} - {episode.title}
-          </Text>
-        </ListItem>
-      ))}
+      <Panel>
+        {take(allEpisodes, 7).map((episode, index) => (
+          <ListItem key={index} column extraMargin>
+            <Text>
+              {formatDate(episode.date)} - {episode.show}
+            </Text>
+            <Text size="sm">
+              {episode.season}x{episode.number} - {episode.title}
+            </Text>
+          </ListItem>
+        ))}
+      </Panel>
     </FadeIn>
   );
 }

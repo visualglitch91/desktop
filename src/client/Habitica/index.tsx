@@ -12,6 +12,7 @@ import Text from "../base/Text";
 import Icon from "../base/Icon";
 import Spacer from "../base/Spacer";
 import Button from "../base/Button";
+import Panel from "../base/Panel";
 
 function Habitica() {
   const [stats, refreshStats] = usePooling<HabiticaStats>(
@@ -97,68 +98,70 @@ function Habitica() {
 
   return (
     <FadeIn key="root" visible>
-      <ListItem>
-        <Button onClick={startTheDay}>
-          <Text size="sm">Começar o dia</Text>
-        </Button>
-      </ListItem>
-      <Spacer />
-      <ListItem style={{ maxWidth: 180 }}>
-        <ProgressBar
-          label={`HP: ${Math.floor(stats.hp)}/${Math.floor(stats.maxHealth)}`}
-          value={(stats.hp / stats.maxHealth) * 100}
-        />
-      </ListItem>
-      <Spacer />
-      <ListItem style={{ maxWidth: 180 }}>
-        <ProgressBar
-          label={`LEVEL ${stats.lvl}: ${stats.exp}/${stats.toNextLevel}`}
-          value={(stats.exp / stats.toNextLevel) * 100}
-        />
-      </ListItem>
-      <Spacer />
-      <ListItem extraMargin>
-        <Text>Hábitos</Text>
-      </ListItem>
-      {habits.map((habit) => (
-        <ListItem key={habit.id}>
-          {habit.down && (
-            <Icon
-              hoverable
-              marginRight
-              name="minus-box-outline"
-              onClick={() => score(habit, "down")}
-            />
-          )}
-          {habit.up && (
-            <Icon
-              hoverable
-              marginRight
-              name="plus-box-outline"
-              onClick={() => score(habit, "up")}
-            />
-          )}
-          <Text ellipsis>{habit.text}</Text>
+      <Panel>
+        <ListItem>
+          <Button onClick={startTheDay}>
+            <Text size="sm">Começar o dia</Text>
+          </Button>
         </ListItem>
-      ))}
-      <Spacer />
-      <ListItem extraMargin>
-        <Text>
-          Tarefas
-          <Icon
-            hoverable
-            marginLeft
-            name="plus-box-outline"
-            onClick={addTodo}
+        <Spacer />
+        <ListItem style={{ maxWidth: 180 }}>
+          <ProgressBar
+            label={`HP: ${Math.floor(stats.hp)}/${Math.floor(stats.maxHealth)}`}
+            value={(stats.hp / stats.maxHealth) * 100}
           />
-        </Text>
-      </ListItem>
-      {tasks.map((task) => (
-        <ListItem key={task.id} hoverable onClick={() => toggle(task)}>
-          <Checkbox marginRight checked={task.completed} />
-          <Text ellipsis>{task.text}</Text>
         </ListItem>
-      ))}
+        <Spacer />
+        <ListItem style={{ maxWidth: 180 }}>
+          <ProgressBar
+            label={`LEVEL ${stats.lvl}: ${stats.exp}/${stats.toNextLevel}`}
+            value={(stats.exp / stats.toNextLevel) * 100}
+          />
+        </ListItem>
+        <Spacer />
+        <ListItem extraMargin>
+          <Text>Hábitos</Text>
+        </ListItem>
+        {habits.map((habit) => (
+          <ListItem key={habit.id}>
+            {habit.down && (
+              <Icon
+                hoverable
+                marginRight
+                name="minus-box-outline"
+                onClick={() => score(habit, "down")}
+              />
+            )}
+            {habit.up && (
+              <Icon
+                hoverable
+                marginRight
+                name="plus-box-outline"
+                onClick={() => score(habit, "up")}
+              />
+            )}
+            <Text ellipsis>{habit.text}</Text>
+          </ListItem>
+        ))}
+        <Spacer />
+        <ListItem extraMargin>
+          <Text>
+            Tarefas
+            <Icon
+              hoverable
+              marginLeft
+              name="plus-box-outline"
+              onClick={addTodo}
+            />
+          </Text>
+        </ListItem>
+        {tasks.map((task) => (
+          <ListItem key={task.id} hoverable onClick={() => toggle(task)}>
+            <Checkbox marginRight checked={task.completed} />
+            <Text ellipsis>{task.text}</Text>
+          </ListItem>
+        ))}
+      </Panel>
     </FadeIn>
   );
 }

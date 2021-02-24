@@ -5,6 +5,7 @@ import FadeIn from "../base/FadeIn";
 import ListItem from "../base/ListItem";
 import Text from "../base/Text";
 import Toggle from "../base/Toggle";
+import Panel from "../base/Panel";
 
 interface LightsOrSwitchItem {
   entity_id: string;
@@ -50,21 +51,23 @@ function LightsAndSwitches({
 
   return (
     <FadeIn key="root" visible>
-      {items.map(
-        (item, index) =>
-          states[item.entity_id] && (
-            <ListItem key={index} hoverable onClick={() => toggle(item)}>
-              <Text>
-                <Toggle
-                  marginRight
-                  size="lg"
-                  checked={states[item.entity_id].state === "on"}
-                />
-                {item.name}
-              </Text>
-            </ListItem>
-          )
-      )}
+      <Panel>
+        {items.map(
+          (item, index) =>
+            states[item.entity_id] && (
+              <ListItem key={index} hoverable onClick={() => toggle(item)}>
+                <Text>
+                  <Toggle
+                    marginRight
+                    size="lg"
+                    checked={states[item.entity_id].state === "on"}
+                  />
+                  {item.name}
+                </Text>
+              </ListItem>
+            )
+        )}
+      </Panel>
     </FadeIn>
   );
 }

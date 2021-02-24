@@ -2,7 +2,7 @@
   position: relative;
   transform: translateX(-50%);
   text-align: center;
-  color: #ffffff;
+  color: var(--highlight);
 }
 
 .fancy-clock__time {
@@ -17,10 +17,11 @@
   font-family: "Moving Skate";
   position: absolute;
   top: 61px;
+  left: 4px;
   width: 100%;
   text-align: center;
   font-size: 130px;
-  color: #1e2156;
+  color: var(--accent);
   transform: rotate(-15deg);
   transform-origin: center center;
 }

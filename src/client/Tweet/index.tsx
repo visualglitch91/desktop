@@ -6,6 +6,7 @@ import zenity from "../utils/zenity";
 import AutoFadeIn from "../base/AutoFadeIn";
 import Icon from "../base/Icon";
 import "./styles.css";
+import Panel from "../base/Panel";
 
 function Tweet() {
   const inputRef = useRef<HTMLSpanElement>();
@@ -43,7 +44,7 @@ function Tweet() {
 
   return (
     <AutoFadeIn
-      className={cx("tweet", focused && "tweet--focused")}
+      className={cx("tweet", "panel", focused && "tweet--focused")}
       onClick={() => setFocused(true)}
     >
       <Icon name="twitter" size="sm" className="tweet__icon" />

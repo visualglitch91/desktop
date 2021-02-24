@@ -1,3 +1,23 @@
+:root {
+  --accent: #ec0082;
+  --highlight: #ffffff;
+  --base: rgba(240, 240, 240, 0.8);
+  --progress-bar: rgba(255, 255, 255, 0.2);
+  --progress-bar-inner: rgba(255, 255, 255, 0.4);
+}
+
+.light-bg {
+  --accent: #ec0082;
+  --highlight: #000000;
+  --base: rgba(0, 0, 0, 0.6);
+  --progress-bar: rgba(0, 0, 0, 0.1);
+  --progress-bar-inner: rgba(0, 0, 0, 0.5);
+}
+
+.panels {
+  --base: rgba(255, 255, 255, 0.9);
+}
+
 html {
   box-sizing: border-box;
 }
@@ -20,9 +40,10 @@ body {
   font-size: 12px;
   padding: 0;
   margin: 0;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--base);
   opacity: 0;
   transition: "opacity 200ms cubic-bezier(0.17, 0.67, 0.83, 0.67)";
+  overflow: hidden;
 }
 
 body.loaded {

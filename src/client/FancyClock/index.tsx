@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import AutoFadeIn from "../base/AutoFadeIn";
+import Panel from "../base/Panel";
 import "./styles.css";
 
 function getTime(date: Date) {
@@ -26,19 +27,21 @@ function FancyClock() {
 
   return (
     <AutoFadeIn className="fancy-clock">
-      <div className="fancy-clock__time">{getTime(date)}</div>
-      <div className="fancy-clock__weekday">
-        {date
-          .toLocaleString("pt-BR", { weekday: "long" })
-          .replace("-feira", "")}
-      </div>
-      <div className="fancy-clock__date">
-        {date.toLocaleDateString("pt-BR", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </div>
+      <Panel style={{ padding: "0px 32px 156px 40px" }}>
+        <div className="fancy-clock__time">{getTime(date)}</div>
+        <div className="fancy-clock__weekday">
+          {date
+            .toLocaleString("pt-BR", { weekday: "long" })
+            .replace("-feira", "")}
+        </div>
+        <div className="fancy-clock__date">
+          {date.toLocaleDateString("pt-BR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </div>
+      </Panel>
     </AutoFadeIn>
   );
 }

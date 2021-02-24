@@ -1,4 +1,4 @@
-import { h, AnyComponent } from "preact";
+import { h } from "preact";
 import cx from "classnames";
 import "./Element.css";
 

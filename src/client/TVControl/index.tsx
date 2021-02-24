@@ -4,6 +4,7 @@ import AutoFadeIn from "../base/AutoFadeIn";
 import Icon from "../base/Icon";
 import Text from "../base/Text";
 import "./styles.css";
+import Panel from "../base/Panel";
 
 interface Command {
   type: "script" | "scene";
@@ -46,43 +47,45 @@ function TVControl() {
 
   return (
     <AutoFadeIn className="tvcontrol">
-      <div className="tvcontrol__row">
-        <Text>Controle da TV</Text>
-      </div>
-      <div className="tvcontrol__row">
-        <Icon
-          hoverable
-          name="rewind"
-          onClick={() => run(commands.prev_media)}
-        />
-        <Icon
-          hoverable
-          name="play-pause"
-          onClick={() => run(commands.play_pause)}
-        />
-        <Icon
-          hoverable
-          name="fast-forward"
-          onClick={() => run(commands.next_media)}
-        />
-      </div>
-      <div className="tvcontrol__row">
-        <Icon
-          hoverable
-          name="volume-minus"
-          onClick={() => run(commands.volume_down)}
-        />
-        <Icon
-          hoverable
-          name="volume-off"
-          onClick={() => run(commands.volume_off)}
-        />
-        <Icon
-          hoverable
-          name="volume-plus"
-          onClick={() => run(commands.volume_up)}
-        />
-      </div>
+      <Panel>
+        <div className="tvcontrol__row">
+          <Text>Controle da TV</Text>
+        </div>
+        <div className="tvcontrol__row">
+          <Icon
+            hoverable
+            name="rewind"
+            onClick={() => run(commands.prev_media)}
+          />
+          <Icon
+            hoverable
+            name="play-pause"
+            onClick={() => run(commands.play_pause)}
+          />
+          <Icon
+            hoverable
+            name="fast-forward"
+            onClick={() => run(commands.next_media)}
+          />
+        </div>
+        <div className="tvcontrol__row">
+          <Icon
+            hoverable
+            name="volume-minus"
+            onClick={() => run(commands.volume_down)}
+          />
+          <Icon
+            hoverable
+            name="volume-off"
+            onClick={() => run(commands.volume_off)}
+          />
+          <Icon
+            hoverable
+            name="volume-plus"
+            onClick={() => run(commands.volume_up)}
+          />
+        </div>
+      </Panel>
     </AutoFadeIn>
   );
 }

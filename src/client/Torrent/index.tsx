@@ -6,6 +6,7 @@ import Text from "../base/Text";
 import ListItem from "../base/ListItem";
 import Spacer from "../base/Spacer";
 import Button from "../base/Button";
+import Panel from "../base/Panel";
 
 function Torrent() {
   const [state] = usePooling<TorrentState>("/qbittorrent/state", 1 * 1000);
@@ -54,20 +55,25 @@ function Torrent() {
 
   return (
     <FadeIn key="root" visible>
-      <Text>Torrents</Text>
-      <Spacer />
-      <div>
-        {state.torrents.map((torrent) => {
-          const percent = (torrent.completed * 100) / torrent.size;
+      <Panel>
+        <Text>Torrents</Text>
+        <Spacer />
+        <div>
+          {state.torrents.map((torrent) => {
+            const percent = (torrent.completed * 100) / torrent.size;
 
-          return (
-            <ListItem column extraMargin>
-              <Text ellipsis>{torrent.name}</Text>
-              <ProgressBar label={`${Math.floor(percent)}%`} value={percent} />
-            </ListItem>
-          );
-        })}
-      </div>
+            return (
+              <ListItem column extraMargin>
+                <Text ellipsis>{torrent.name}</Text>
+                <ProgressBar
+                  label={`${Math.floor(percent)}%`}
+                  value={percent}
+                />
+              </ListItem>
+            );
+          })}
+        </div>
+      </Panel>
     </FadeIn>
   );
 }
