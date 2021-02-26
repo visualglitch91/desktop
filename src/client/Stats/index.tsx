@@ -42,12 +42,14 @@ function Stats() {
       {Object.keys(stats.disks).map((disk) => (
         <Stat key={disk} label={`disco ${disk}`} value={stats.disks[disk]} />
       ))}
-      <ListItem hoverable onClick={toggleVPN} style={{ marginLeft: -2 }}>
-        <Text>
-          <Toggle marginRight size="lg" checked={stats.vpn} />
-          {stats.vpn ? "VPN Connected" : "VPN Disconnected"}
-        </Text>
-      </ListItem>
+      {typeof stats.vpn !== "undefined" && (
+        <ListItem hoverable onClick={toggleVPN} style={{ marginLeft: -2 }}>
+          <Text>
+            <Toggle marginRight size="lg" checked={stats.vpn} />
+            {stats.vpn ? "VPN Connected" : "VPN Disconnected"}
+          </Text>
+        </ListItem>
+      )}
     </FadeIn>
   );
 }

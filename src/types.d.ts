@@ -39,14 +39,8 @@ type HabiticaTask = {
   up: boolean;
   down: boolean;
 } & (
-  | {
-      completed: false;
-      dateCompleted: undefined;
-    }
-  | {
-      completed: true;
-      dateCompleted: string;
-    }
+  | { completed: false; dateCompleted: undefined }
+  | { completed: true; dateCompleted: string }
 );
 
 type HRLockerActions = "clock_in" | "break_start" | "break_over" | "clock_out";
@@ -69,7 +63,7 @@ interface HomeAssistantMediaPlayerEntity extends BaseHomeAssistantEntity {
 type HomeAssistantEntityMap = { [entityId: string]: BaseHomeAssistantEntity };
 
 interface SystemStats {
-  vpn: boolean;
+  vpn: boolean | undefined;
   memory: number;
   cpu: number;
   disks: { [key: string]: number };

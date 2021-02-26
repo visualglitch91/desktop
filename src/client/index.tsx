@@ -3,7 +3,8 @@ import "@mdi/font/css/materialdesignicons.min.css";
 import App from "./App";
 import "./index.css";
 
-window.isDesktop = window !== window.parent;
+window.isDesktop =
+  window !== window.parent || window.location.search === "?desktop=true";
 
 const root = document.getElementById("root") as HTMLElement; // this should never be null
 const bg = document.getElementById("bg") as HTMLElement; // this should never be null

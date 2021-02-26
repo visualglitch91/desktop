@@ -43,6 +43,7 @@
     "pkg-dir": "^5.0.0",
     "preact": "^10.5.7",
     "qbittorrent-api-v2": "^1.2.2",
+    "systeminformation": "^5.5.0",
     "trakt.tv": "^8.0.0",
     "wallpaper": "^4.4.2"
   },
